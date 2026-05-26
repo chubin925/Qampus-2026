@@ -8,7 +8,7 @@
 <body>
     {% load humanize %}
     <h2>질의응답</h2><hr>
-    전체 수업 학교프로그램 행정/절차<br>
+    전체 수업 학교프로그램 행정/절차 <br>
 
     {% for post in posts %}
     <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
