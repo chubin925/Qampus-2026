@@ -2,7 +2,7 @@
 name: 게시글 목록 조회 API
 about: 기능 관련 이슈 템플릿
 title: "✨ Feature: "
-labels: ''
+labels: feat
 assignees: ''
 
 ---

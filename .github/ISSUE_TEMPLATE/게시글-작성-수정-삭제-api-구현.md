@@ -2,7 +2,7 @@
 name: 게시글 작성/수정/삭제 API 구현
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: feat
 assignees: ''
 
 ---
