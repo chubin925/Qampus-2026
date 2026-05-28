@@ -15,7 +15,7 @@
         <br>
         <a href="#">삭제하기</a>
     </dialog>
-    
+
     <p>좋아요 {{ post.like_count }}</p>
     <p>댓글 {{ comment_count }}</p>
     <p>스크랩 {{ post.scrap_count }}</p>
@@ -36,6 +36,12 @@
     {% for comment in comments %}
     <div>
         <p>익명 : {{ comment.content }}</p>
+        <p>좋아요 {{ comment.like_count }} / {{ comment.created_at }}</p>
+
+        <form method="POST" action="{% url 'Qampus:like_comment' comment.id %}">
+            {% csrf_token %}
+            <button type="submit">좋아요</button>
+        </form>
 
         <!-- 댓글 수정 -->
         <form method="POST" action="{% url 'Qampus:update_comment' comment.id %}">
@@ -54,6 +60,12 @@
         {% for reply in comment.replies.all %}
             <div style="margin-left: 30px;">
                 <p>익명 : {{ reply.content }}</p>
+                <p>좋아요 {{ reply.like_count }} / {{ reply.created_at }}</p>
+
+                <form method="POST" action="{% url 'Qampus:like_reply' reply.id %}">
+                    {% csrf_token %}
+                    <button type="submit">좋아요</button>
+                </form>
 
                 <!-- 대댓글 수정 -->
                 <form method="POST" action="{% url 'Qampus:update_reply' reply.id %}">

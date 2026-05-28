@@ -168,3 +168,41 @@ def scrap_post(request, post_id):
     request.session['scrapped_posts'] = scrapped_posts
 
     return redirect('Qampus:detail', post.id)
+
+#댓글/대댓글 좋아요
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    liked_comments = request.session.get('liked_comments', [])
+
+    if comment_id in liked_comments:
+        if comment.like_count > 0:
+            comment.like_count -= 1
+        liked_comments.remove(comment_id)
+    else:
+        comment.like_count += 1
+        liked_comments.append(comment_id)
+
+    comment.save()
+    request.session['liked_comments'] = liked_comments
+
+    return redirect('Qampus:detail', comment.post.id)
+
+
+def like_reply(request, reply_id):
+    reply = get_object_or_404(Reply, id=reply_id)
+
+    liked_replies = request.session.get('liked_replies', [])
+
+    if reply_id in liked_replies:
+        if reply.like_count > 0:
+            reply.like_count -= 1
+        liked_replies.remove(reply_id)
+    else:
+        reply.like_count += 1
+        liked_replies.append(reply_id)
+
+    reply.save()
+    request.session['liked_replies'] = liked_replies
+
+    return redirect('Qampus:detail', reply.comment.post.id)
