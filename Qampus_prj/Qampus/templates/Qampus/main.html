@@ -24,10 +24,12 @@
         
     </form><hr>
 
-    <select name="sort" onchange="this.form.submit()">
-        <option value="latest" {% if selected_sort == 'latest' %}selected{% endif %}>최신순</option>
-        <option value="popular" {% if selected_sort == 'popular' %}selected{% endif %}>추천순</option>
-    </select>
+    <form method="GET" action="{% url 'Qampus:main' %}">
+    <input type="hidden" name="category_slug" value="{{ selected_slug }}">
+        <select name="sort" onchange="this.form.submit()">
+            <option value="latest" {% if selected_sort == 'latest' %}selected{% endif %}>최신순</option>
+            <option value="popular" {% if selected_sort == 'popular' %}selected{% endif %}>추천순</option>
+        </select>
 
     <input type="hidden" name="category_slug" value="{{ selected_slug }}">
     

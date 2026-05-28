@@ -12,11 +12,11 @@ def main(request):
         posts = Post.objects.all().order_by('-created_at')
 
     if sort == 'popular':
-        posts = posts.order_by('-likes')
+        posts = posts.order_by('-likes', '-created_at')
     else:
         posts = posts.order_by('-created_at')
 
-    return render(request, 'Qampus/main.html', {'posts': posts, 'selected_slug': category_slug, 'sort':sort})
+    return render(request, 'Qampus/main.html', {'posts': posts, 'selected_slug': category_slug, 'selected_sort':sort})
     
 def create(request, slug=None):
     categories = Category.objects.all()
