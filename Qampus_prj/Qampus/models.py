@@ -14,6 +14,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add= True)
     category = models.ManyToManyField(Category, blank=True)
     like_count = models.PositiveIntegerField(default=0)
+    likes = models.PositiveBigIntegerField(default=0)
     scraps = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
