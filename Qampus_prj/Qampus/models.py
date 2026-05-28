@@ -14,7 +14,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add= True)
     likes = models.PositiveBigIntegerField(default=0)
     scraps = models.PositiveBigIntegerField(default=0)
-    #charfield로 해서 defaul=응답자, 글 작성시에 이름 받기..? author = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts")
 
     def __str__(self):
         return f'[{self.id}] {self.title}'
