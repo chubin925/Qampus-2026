@@ -148,3 +148,14 @@ def delete_reply(request, reply_id):
     reply.delete()
 
     return redirect("Qampus:detail", post_id)
+
+
+#게시글 스크랩
+def scrap_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == "POST":
+        post.scrap_count += 1
+        post.save()
+
+    return redirect("Qampus:detail", post.id)

@@ -15,9 +15,11 @@
         <br>
         <a href="#">삭제하기</a>
     </dialog>
-    {{ post.like_count }}
-    {{ post.scrap_count }}
-    {{ post.comment_count }}
+    
+    <p>좋아요 {{ post.like_count }}</p>
+    <p>댓글 {{ comment_count }}</p>
+    <p>스크랩 {{ post.scrap_count }}</p>
+
 
     <h3>질문자 </h3>
     <p>{{ post.created_at }}</p>
@@ -25,8 +27,12 @@
     <p>{{ post.content }}</p>
 
 
+    <form method="POST" action="{% url 'Qampus:scrap_post' post.id %}">
+    {% csrf_token %}
+    <button type="submit">스크랩</button>
+    </form>
 
-
+    <hr>
     {% for comment in comments %}
     <div>
         <p>익명 : {{ comment.content }}</p>
