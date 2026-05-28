@@ -15,7 +15,7 @@
 
     {% for comment in comments %}
     <div>
-        <p>익명 : {{ comment.content }}</p>
+        <p>응답자 : {{ comment.content }}</p>
 
         <!-- 댓글 수정 -->
         <form method="POST" action="{% url 'Qampus:update_comment' comment.id %}">
