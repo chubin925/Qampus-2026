@@ -21,10 +21,51 @@
     <h2>{{ post.title }}</h2>
     <p>{{ post.content }}</p>
 
-    like reply scrap
-    <hr>
 
-    <input type="text" name="reply" placeholder="답변을 입력해보세요">
-    <input type="submit" value="등록">
-</body>
-</html>
+
+
+    {% for comment in comments %}
+    <div>
+        <p>익명 : {{ comment.content }}</p>
+
+        <!-- 댓글 수정 -->
+        <form method="POST" action="{% url 'Qampus:update_comment' comment.id %}">
+            {% csrf_token %}
+            <input type="text" name="content" value="{{ comment.content }}">
+            <button type="submit">댓글 수정</button>
+        </form>
+
+        <!-- 댓글 삭제 -->
+        <form method="POST" action="{% url 'Qampus:delete_comment' comment.id %}">
+            {% csrf_token %}
+            <button type="submit">댓글 삭제</button>
+        </form>
+
+        <!-- 대댓글 목록 -->
+        {% for reply in comment.replies.all %}
+            <div style="margin-left: 30px;">
+                <p>익명 : {{ reply.content }}</p>
+
+                <!-- 대댓글 수정 -->
+                <form method="POST" action="{% url 'Qampus:update_reply' reply.id %}">
+                    {% csrf_token %}
+                    <input type="text" name="content" value="{{ reply.content }}">
+                    <button type="submit">답글 수정</button>
+                </form>
+
+                <!-- 대댓글 삭제 -->
+                <form method="POST" action="{% url 'Qampus:delete_reply' reply.id %}">
+                    {% csrf_token %}
+                    <button type="submit">답글 삭제</button>
+                </form>
+            </div>
+        {% endfor %}
+
+        <!-- 대댓글 작성 -->
+        <form method="POST" action="{% url 'Qampus:create_reply' comment.id %}">
+            {% csrf_token %}
+            <input type="text" name="content" placeholder="답글을 입력하세요">
+            <button type="submit">답글 작성</button>
+        </form>
+    </div>
+{% endfor %}
