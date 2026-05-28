@@ -13,4 +13,7 @@ urlpatterns = [
     path("posts/<int:post_id>/comments/create/", create_comment, name="create_comment"),
     path("comments/<int:comment_id>/delete/", delete_comment, name="delete_comment"),
     path("comments/<int:comment_id>/update/", update_comment, name="update_comment"),
+    path("comments/<int:comment_id>/replies/create/", create_reply, name="create_reply"),
+    path("replies/<int:reply_id>/update/", update_reply, name="update_reply"),
+    path("replies/<int:reply_id>/delete/", delete_reply, name="delete_reply"),
 ]

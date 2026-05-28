@@ -63,7 +63,7 @@ def category(request, slug):
     return render(request, 'Qampus/category.html', {'category':category, 'posts':posts})
 
 
-
+#답변 CRUD
 def create_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
@@ -102,3 +102,39 @@ def update_comment(request, comment_id):
     return redirect("Qampus:detail", post_id)
 
 
+#대댓글 CRUD
+def create_reply(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.method == "POST":
+        content = request.POST.get("content")
+
+        if content:
+            Reply.objects.create(
+                comment=comment,
+                content=content
+            )
+
+    return redirect("Qampus:detail", comment.post.id)
+
+
+def update_reply(request, reply_id):
+    reply = get_object_or_404(Reply, id=reply_id)
+
+    if request.method == "POST":
+        content = request.POST.get("content")
+
+        if content:
+            reply.content = content
+            reply.save()
+
+    return redirect("Qampus:detail", reply.comment.post.id)
+
+
+def delete_reply(request, reply_id):
+    reply = get_object_or_404(Reply, id=reply_id)
+    post_id = reply.comment.post.id
+
+    reply.delete()
+
+    return redirect("Qampus:detail", post_id)
