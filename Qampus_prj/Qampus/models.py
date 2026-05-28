@@ -14,11 +14,10 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add= True)
     category = models.ManyToManyField(Category, blank=True)
     like_count = models.PositiveIntegerField(default=0)
-    likes = models.PositiveBigIntegerField(default=0)
-    scraps = models.PositiveBigIntegerField(default=0)
+    scrap_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f'[{self.id}] self.title'
+        return f'[{self.id}] {self.title}'
     
     
 class Comment(models.Model):

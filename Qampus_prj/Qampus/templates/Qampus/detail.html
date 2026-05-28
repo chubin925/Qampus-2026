@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{% url 'Qampus:main' %}">< 질의 응답</a>
+    <a href="{% url 'Qampus:main' %}">질의 응답</a>
 
     <button onclick="document.getElementById('menu').showModal()">⋮</button>
 
@@ -15,6 +15,9 @@
         <br>
         <a href="#">삭제하기</a>
     </dialog>
+    {{ post.like_count }}
+    {{ post.scrap_count }}
+    {{ post.comment_count }}
 
     <h3>질문자 </h3>
     <p>{{ post.created_at }}</p>

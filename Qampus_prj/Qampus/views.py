@@ -37,7 +37,6 @@ def detail(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comments.all().order_by('-created_at')
     comment_count = post.comments.count()
-    like_count = post.likes.count()
     reply_count = Reply.objects.filter(comment__post=post).count()
     total_comment_count = comment_count + reply_count
 
@@ -49,7 +48,7 @@ def detail(request, id):
                 'like_count': post.like_count,
                 'scrap_count': post.scrap_count,
                 'comment_count': total_comment_count,
-                'content':content})
+                })
 
 def update(request, id):
     post = get_object_or_404(Post, id=id)
