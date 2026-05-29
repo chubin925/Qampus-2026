@@ -62,7 +62,6 @@ def update(request, id):
     post = get_object_or_404(Post, id=id)
 
     if request.method == 'POST':
-        print("=== POST 요청 들어옴 ===")
         post.title = request.POST.get('title')
         post.content = request.POST.get('content')
         
