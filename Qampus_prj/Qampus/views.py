@@ -12,7 +12,7 @@ def main(request):
         posts = Post.objects.all().order_by('-created_at')
 
     if sort == 'popular':
-        posts = posts.order_by('-likes')
+        posts = posts.order_by('-like_count')
     else:
         posts = posts.order_by('-created_at')
 
