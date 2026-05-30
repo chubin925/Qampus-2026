@@ -15,9 +15,17 @@
   cursor: pointer;
 }
 
+.box {
+  display: flex;
+  flex-direction: row;
+}
+
 .header {
   border-bottom: none;
+  display: flex;
+  flex-direction: row;
 }
+
 
 .form-title {
   width: 100%;
@@ -67,7 +75,7 @@
   gap: 20px;
 
   width: 100%;
-  height: 300px;
+  /* height: 300px; */
   padding: 20px 30px;
 }
 .select-category {
@@ -80,6 +88,9 @@
   color: #a5a3a3;
   font-size: 14px;
   font-weight: 200;
+
+  padding: 0;
+  margin: 0;
 }
 
 .select-category li {
@@ -108,6 +119,8 @@
 
   font-weight: 300;
   line-height: 16px;
+
+  padding: 4px 10px;
 }
 
 .text-guide p {
