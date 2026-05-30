@@ -1,40 +1,52 @@
-{% comment %} <!DOCTYPE html>
+{% comment %} <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>질문 올리기</h2>
-    <form method="POST" action="{% url 'Qampus:update' post.id %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" value="{{ post.title }}" name="title"><br><br>
-        <textarea name="content">{{ post.content }}</textarea><br><br>
-        
-    <select name="category">
+    <form
+      method="POST"
+      action="{% url 'Qampus:update' post.id %}"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="text" value="{{ post.title }}" name="title" /><br /><br />
+      <textarea name="content">{{ post.content }}</textarea><br /><br />
+
+      <select name="category">
         {% for category in categories %}
-            <option value="{{ category.id }}" {% if category in post.category.all %}selected{% endif %}>
-                {{ category.name }}
-            </option>
+        <option
+          value="{{ category.id }}"
+          {%
+          if
+          category
+          in
+          post.category.all
+          %}selected{%
+          endif
+          %}
+        >
+          {{ category.name }}
+        </option>
         {% endfor %}
-    </select>
-    <br><br>
-    <input type="submit" value="완료">
+      </select>
+      <br /><br />
+      <input type="submit" value="완료" />
     </form>
-</body>
-</html> {% endcomment %}
-
-
-
+  </body>
+</html>
+{% endcomment %}
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/shared.css" />
-    <link rel="stylesheet" href="../css/board-edit.css" />
+    <link rel="stylesheet" href="{% static 'css/shared.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/board-edit.css'%}" />
     <title>질문 수정</title>
   </head>
   <body>
@@ -44,7 +56,7 @@
       <header class="header board-edit-header">
         <img
           class="head-left-img board-edit-back-button"
-          src="../assets/icons/chevron-left.svg"
+          src="{% static 'icons/chevron-left.svg' %}"
           alt="뒤로가기"
         />
         <h1>질문 수정</h1>
@@ -58,7 +70,7 @@
           <div class="board-edit-user">
             <img
               class="board-edit-user-img"
-              src="../assets/icons/user.svg"
+              src="{% static 'icons/user.svg' %}"
               alt="유저 이미지"
             />
             <div class="board-edit-user-info">
@@ -97,5 +109,5 @@
     </div>
   </body>
 
-  <script src="../js/board-edit.js"></script>
+  <script src="{% static 'js/board-edit.js' %}"></script>
 </html>
