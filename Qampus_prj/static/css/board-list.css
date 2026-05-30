@@ -54,6 +54,10 @@
     position: absolute;
 
     margin-left: 200px;
+
+    text-decoration: none;
+
+    z-index: 9999;
 }
 
 .popupPostBtn > p {
@@ -70,6 +74,8 @@
 }
 
 .navigation {
+    position: relative;
+
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -78,6 +84,12 @@
 
     height: 53px;
     border-bottom: 1px solid #D9D9D9;
+}
+
+.navigation button {
+    border: none;
+    background-color: transparent;
+    padding: 0px;
 }
 
 .selected_category {
@@ -156,32 +168,40 @@
 }
 
 .recent {
-    color: #000;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    background-color:#F2F5FA;
 
     margin: 0px;
     padding: 7px 33px 5px 33px;
     border-radius: 0 0 10px 10px;
     height: 26px;
 
+    color: #000;
+    background-color:#F2F5FA;
+    border: none;
 }
 
 .recommend {
-    color: #FFFFFF;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    background-color: #2173f1;
 
     margin: 0px;
     padding: 7px 33px 5px 33px;
     border-radius: 10px 10px 0 0;
     height: 26px;
+
+    color: #000;
+    background-color:#F2F5FA;
+    border: none;
+}
+
+.active {
+    background-color: #2173F1;
+    color: #FFFFFF;
 }
 
 .none-post-notice {
@@ -217,8 +237,11 @@
 }
 
 .bigBoxForpost {
+    display: block;
     width: 390px;
     border-bottom: 1px solid #D9D9D9;
+    text-decoration: none;
+    color: inherit;
 }
 
 .postTitle {
@@ -309,6 +332,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+
+    text-decoration: none;
 }
 
 .postBtn > img {
