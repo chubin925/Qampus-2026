@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,4 +59,301 @@
     <a href="{% url 'Qampus:create' %}">질문 올리기</a>
     
 </body>
+</html> {% endcomment %}
+
+
+
+
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qampus</title>
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/board-list.css" />
+  </head>
+  <body>
+    <!--모바일 전용 화면-->
+    <div class="app">
+      <header class="header">
+        <div class="head-left">
+          <img
+            class="head-left-img"
+            src="../assets/icons/ChatsCircle.svg"
+            alt="헤더채팅아이콘"
+          />
+          <h1>질의응답</h1>
+        </div>
+
+        <div class="head-right">
+          <img
+            class="head-right-img1"
+            src="../assets/icons/search.svg"
+            alt="헤더돋보기아이콘"
+          />
+          <button>
+            <img
+              class="head-right-img2"
+              src="../assets/icons/ellipsis-vertical-b.svg"
+              alt="헤더점세개아이콘"
+            />
+          </button>
+        </div>
+      </header>
+
+      <div class="popupPostBtn">
+        <p>질문 올리기</p>
+        <img src="../assets/icons/pencil-b.svg" />
+      </div>
+
+      <nav class="navigation">
+        <div class="selected_category">전체</div>
+        <div class="category">수업</div>
+        <div class="category">학교 프로그램</div>
+        <div class="category">행정 / 절차</div>
+      </nav>
+
+      <div class="selected_line"></div>
+
+      <main class="main">
+        <button id="howtolist">
+          <p>추천순</p>
+          <img src="../assets/icons/downvector.svg" alt="아래방향화살표" />
+        </button>
+
+        <div class="howtolistPopup">
+          <p class="recommend">추천순</p>
+          <p class="recent">최신순</p>
+        </div>
+
+        <p class="none-post-notice">
+          아직 작성된 질문이 없어요. <br /><br />
+          수업에 대해 궁금한 건 무엇이든 질문하세요!
+        </p>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">(질문1) 질문제목입니다.</p>
+            <p class="postContent">(질문내용1) 질문내용입니다.</p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자1</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">
+              (질문2) 15자 초과시 어떻게 작동하는지 확인하기 위한
+              질문제목입니다.
+            </p>
+            <p class="postContent">
+              (질문내용2) 20자 초과시 어떻게 작동하는지 확인하기 위한
+              질문내용입니다.
+            </p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자2</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">(질문3) 질문제목입니다.</p>
+            <p class="postContent">(질문내용3) 질문내용입니다.</p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자3</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">(질문4) 질문제목입니다.</p>
+            <p class="postContent">(질문내용4) 질문내용입니다.</p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자4</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">(질문5) 질문제목입니다.</p>
+            <p class="postContent">(질문내용5) 질문내용입니다.</p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자5</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bigBoxForpost" data-category="수업">
+          <div class="post">
+            <p class="postTitle">(질문6) 질문제목입니다.</p>
+            <p class="postContent">(질문내용6) 질문내용입니다.</p>
+            <div class="postFooter">
+              <div class="postInfo">
+                <div>10분 전 · 질문자6</div>
+              </div>
+
+              <div class="postReaction">
+                <div class="heart">
+                  <img src="../assets/icons/heart-blue.svg" alt="빈하트" />
+                  <div class="numOfHeart">0</div>
+                </div>
+
+                <div class="comment">
+                  <img src="../assets/icons/comment.svg" alt="댓글" />
+                  <div class="numOfComment">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="postBtn">
+        <img src="../assets/icons/pencil-w.svg" alt="질문 올리기" />
+        <p class="uploadQuestion">질문 올리기</p>
+      </div>
+    </div>
+    <script src="../js/board-list.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 아래 해당 코드 부분 board-list-nonepost.html 입니다!  {% endcomment %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qampus</title>
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/board-list-nonepost.css" />
+  </head>
+  <body>
+    <!--모바일 전용 화면-->
+    <div class="app">
+      <header class="header">
+        <div class="head-left">
+          <img class="head-left-img" src="../assets/icons/ChatsCircle.svg" alt="헤더채팅아이콘">
+          <h1>질의응답</h1>
+        </div>
+
+        <div class="head-right">
+          <img class="head-right-img1" src="../assets/icons/search.svg" alt="헤더돋보기아이콘">
+          <button>
+            <img class="head-right-img2" src="../assets/icons/ellipsis-vertical-b.svg" alt="헤더점세개아이콘">
+          </button>
+        </div>
+      </header>
+      
+      <div class="popupPostBtn">
+        <p>질문 올리기</p>
+        <img src="../assets/icons/pencil-b.svg">
+      </div>
+
+      <nav class="navigation">
+        <div class="selected_category">전체</div>
+        <div class="category">수업</div>
+        <div class="category">학교 프로그램</div>
+        <div class="category">행정 / 절차</div>
+      </nav>
+
+      <div class="selected_line"></div>
+
+      <p class="none-post-notice">
+        아직 작성된 질문이 없어요. <br/><br/>
+        수업에 대해 궁금한 건 무엇이든 질문하세요!
+      </p>
+
+      <div class="postBtn">
+        <img src="../assets/icons/pencil-w.svg" alt="질문 올리기">
+        <p class="uploadQuestion">질문 올리기</p>
+      </div>
+      
+    </div>
+  </body>
 </html>
