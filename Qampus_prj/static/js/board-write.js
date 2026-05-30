@@ -16,7 +16,13 @@ categoryItems.forEach((item, index) => {
 
     item.classList.add("active");
 
-    categorySelect.selectedIndex = index;
+    const options = categorySelect.options;
+
+    for (let i = 0; i < options.length; i++) {
+      options[i].selected = false;
+    }
+
+    options[index].selected = true;
   });
 });
 

@@ -98,7 +98,7 @@
               <li>#기타</li>
             </ul>
 
-            <select name="category" id="categorySelect" style="display: none;">
+            <select name="category" id="categorySelect" multiple style="display: none;">
               {% for category in categories %}
               <option value="{{ category.id }}">
                 {{ category.name }}
