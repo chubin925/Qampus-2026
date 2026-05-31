@@ -29,12 +29,9 @@ jobs:
 
             # 2) 장고 앱 폴더에서 migrate
             cd ${{ secrets.APP_DIR }}
-            if [ -d "myvenv" ]; then
-              chmod -R +x myvenv/bin/
-              myvenv/bin/python -m pip install --upgrade pip setuptools wheel
-              if [ -f requirements.txt ]; then myvenv/bin/pip install -r requirements.txt; fi
-              myvenv/bin/python manage.py migrate --noinput
-            fi
+            python3 -m pip install --upgrade pip setuptools wheel
+            if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
+            python3 manage.py migrate --noinput
 
             # 3) 서비스 재시작
             sudo systemctl restart uwsgi
