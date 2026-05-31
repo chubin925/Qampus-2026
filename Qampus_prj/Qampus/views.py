@@ -6,7 +6,8 @@ def main(request):
     category_slug = request.POST.get('category_slug', '')
     selected_sort = request.GET.get('sort', 'latest')
     posts = Post.objects.all()
-
+    
+    
     if category_slug:
         posts = Post.objects.filter(category__slug=category_slug).order_by('-created_at')
     else:
@@ -16,6 +17,11 @@ def main(request):
         posts = posts.order_by('-like_count', '-created_at')
     else:
         posts = posts.order_by('-created_at')
+
+    for post in posts:
+        comment_count = post.comments.count()
+        reply_count = Reply.objects.filter(comment__post=post).count()
+        post.total_comment_count = comment_count + reply_count    
 
     return render(request, 'Qampus/main.html', {'posts': posts, 'selected_slug': category_slug, 'selected_sort':selected_sort})
     

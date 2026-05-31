@@ -98,12 +98,12 @@
               <div class="postReaction">
                 <div class="heart">
                   <img src="{% static 'icons/heart-blue.svg' %}" alt="빈하트"/>
-                  <div class="numOfHeart">{{ post.post_like.count }}</div>
+                  <div class="numOfHeart">{{ post.like_count }}</div>
                 </div>
 
                 <div class="comment">
                   <img src="{% static 'icons/comment.svg' %}" alt="댓글"/>
-                  <div class="numOfComment">{{ post.post_answer.count }}</div>
+                  <div class="numOfComment">{{ post.comments.count }}</div>
                 </div>
               </div>
             </div>
