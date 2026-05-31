@@ -1,116 +1,441 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{% url 'Qampus:main' %}">질의 응답</a>
+{% load static %}
 
-    <button onclick="document.getElementById('menu').showModal()">⋮</button>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/board-detail.css' %}" />
+    <title>{{ post.title }}</title>
+  </head>
 
-    <dialog id="menu">
-        <a href="{% url 'Qampus:update' post.id %}">
-            <button type="button">수정하기</button>
+  <body>
+    <!-- 모바일 전용 화면 -->
+    <div class="app">
+      <!-- 헤더 -->
+      <header class="header">
+        <a class="header-left" href="{% url 'Qampus:main' %}">
+          <img
+            class="head-left-img detail-back-button"
+            src="{% static 'icons/chevron-left.svg' %}"
+            alt="뒤로가기"
+          />
         </a>
-        <br>
-        <form action="{% url 'Qampus:delete' post.id %}" method="POST">
+
+        <a href="{% url 'Qampus:main' %}">
+          <h1 class="qna">질의 응답</h1>
+        </a>
+
+        <button class="header-right post-menu-button" type="button">
+          <img
+            class="head-right-img post-menu-icon"
+            src="{% static 'icons/ellipsis-vertical-b.svg' %}"
+            alt="게시글 메뉴"
+          />
+        </button>
+      </header>
+
+      <main class="main">
+        <!-- 질문한 내용 영역 -->
+        <section class="section-content">
+          <!-- 질문자 유저정보 -->
+          <div class="content-user">
+            <img
+              class="user-img"
+              src="{% static 'icons/user.svg' %}"
+              alt="사용자 이미지"
+            />
+
+            <div class="user-info">
+              <p class="user-one">질문자</p>
+              <p class="user-time">{{ post.created_at|date:"n/j H:i" }}</p>
+            </div>
+          </div>
+
+          <!-- 질문 제목, 내용 -->
+          <div class="content-detail">
+            <h4>{{ post.title }}</h4>
+            <p>{{ post.content }}</p>
+          </div>
+
+          <!-- 카테고리 -->
+          <div class="category-box">
+            {% for category in post.category.all %}
+            <span class="category-item">{{ category.name }}</span>
+            {% empty %}
+            <span class="category-item">선택한 카테고리 없음</span>
+            {% endfor %}
+          </div>
+
+          <!-- 좋아요, 댓글, 스크랩 영역 -->
+          <div class="reaction">
+            <!-- 게시글 좋아요 -->
+            <form class="reaction-form"
+            method="POST" action="{% url 'Qampus:like_post' post.id %}">
+              {% csrf_token %}
+              <button
+                class="like-box"
+                type="submit"
+                data-post-id="{{ post.id }}"
+              >
+                <img
+                  class="like-img"
+                  src="{% static 'icons/heart-blue.svg' %}"
+                  alt="좋아요"
+                />
+
+                <img
+                  class="like-img-fill"
+                  src="{% static 'icons/heart-blue-fill.svg' %}"
+                  alt="좋아요 선택됨"
+                />
+
+                <p class="like-text">
+                  좋아요 <span class="like-num">{{ like_count }}</span>개
+                </p>
+              </button>
+            </form>
+
+            <!-- 댓글 개수 -->
+            <div class="comment-box">
+              <img
+                class="comment-img"
+                src="{% static 'icons/comment.svg' %}"
+                alt="댓글"
+              />
+              <p class="comment-text">
+                답변 <span class="comment-num">{{ comment_count }}</span>개
+              </p>
+            </div>
+
+            <!-- 게시글 스크랩 -->
+            <form class="reaction-form" 
+            method="POST" action="{% url 'Qampus:scrap_post' post.id %}">
             {% csrf_token %}
-            <button type="submit">삭제하기</button>
-        </form>
-    </dialog>
+              <button
+                class="scrap-box"
+                type="submit"
+                data-post-id="{{ post.id }}"
+              >
+                <img
+                  class="scrap-img"
+                  src="{% static 'icons/scrap.svg' %}"
+                  alt="스크랩"
+                />
 
+                <img
+                  class="scrap-img-fill"
+                  src="{% static 'icons/scrap-fill.svg' %}"
+                  alt="스크랩 선택됨"
+                />
 
-    <h3>질문자 </h3>
-    <p>{{ post.created_at }}</p>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p><hr>
-    <br>
-    <p>{% for category in post.category.all %}
-            [{{ category.name }}]
-        {% empty %}
-            선택한 카테고리 없음
-        {% endfor %}
-    </p>
-    
+                <p class="scrap-text">
+                  <span class="scrap-default-text">스크랩</span>
+                  <span class="scrap-cancel-text">스크랩 취소</span>
+                </p>
+              </button>
+            </form>
+          </div>
+        </section>
 
-    <a>답변 {{ comment_count }}개</a>
-    <a>좋아요 {{ like_count }}개</a>
-    <form method="POST" action="{% url 'Qampus:like_post' post.id %}">
-    {% csrf_token %}
-    <button type="submit">좋아요</button>
-    </form>
-    <br>
-    <a>스크랩 {{ scrap_count }}개</a>
-    <form method="POST" action="{% url 'Qampus:scrap_post' post.id %}">
-    {% csrf_token %}
-    <button type="submit">스크랩</button>
-    </form>
+        <!-- 댓글 영역 -->
+        <section class="section-comment">
+          <!-- 총 댓글 개수 -->
+          <p class="comment-count">답변 {{ comment_count }}</p>
 
+          <!-- 댓글 없을 때 화면 -->
+          <div class="empty-comment {% if comments %}hidden{% endif %}">
+            <img
+              class="empty-img"
+              src="{% static 'icons/message.svg' %}"
+              alt="빈 댓글"
+            />
+            <p>아직 작성된 답변이 없어요.</p>
+            <p>첫 답변을 남겨주세요</p>
+          </div>
 
-    <!--댓글-->
-    <form method="POST" action="{% url 'Qampus:create_comment' post.id %}">
-        {% csrf_token %}
-        <input type="text" name="content" placeholder="답변을 입력해세요" required>
-        <button type="submit">등록</button>
-    </form>
-    <br>
-    <hr>
-    {% for comment in comments %}
-    <div>
-        <p>익명 : {{ comment.content }}</p>
-        <p>좋아요 {{ comment.like_count }} / {{ comment.created_at }}</p>
+          <!-- 댓글 목록 -->
+          <div class="comment-list {% if not comments %}hidden{% endif %}">
+            {% for comment in comments %}
+            <!-- 하나의 댓글 영역 -->
+            <div class="comment-item">
+              <!-- 댓글 유저정보 -->
+              <div class="comment-user-box">
+                <img
+                  class="comment-user-img"
+                  src="{% static 'icons/user.svg' %}"
+                  alt="사용자 이미지"
+                />
+                <p>익명</p>
 
-        <form method="POST" action="{% url 'Qampus:like_comment' comment.id %}">
-            {% csrf_token %}
-            <button type="submit">좋아요</button>
-        </form>
+                <button class="comment-menu-button" type="button">
+                  <img
+                    class="comment-ellipsis-img"
+                    src="{% static 'icons/ellipsis-vertical-g.svg' %}"
+                    alt="댓글 메뉴"
+                  />
+                </button>
+              </div>
 
-        <!-- 댓글 수정 -->
-        <form method="POST" action="{% url 'Qampus:update_comment' comment.id %}">
-            {% csrf_token %}
-            <input type="text" name="content" value="{{ comment.content }}">
-            <button type="submit">댓글 수정</button>
-        </form>
+              <div class="comment-content">
+                <p class="comment-content-text">{{ comment.content }}</p>
 
-        <!-- 댓글 삭제 -->
-        <form method="POST" action="{% url 'Qampus:delete_comment' comment.id %}">
-            {% csrf_token %}
-            <button type="submit">댓글 삭제</button>
-        </form>
+                <!-- 댓글 작성 시간, 답글, 좋아요 -->
+                <div class="comment-etc">
+                  <p>{{ comment.created_at|date:"y/m/d" }}</p>
 
-        <!-- 대댓글 목록 -->
-        {% for reply in comment.replies.all %}
-            <div style="margin-left: 30px;">
-                <p>익명 : {{ reply.content }}</p>
-                <p>좋아요 {{ reply.like_count }} / {{ reply.created_at }}</p>
+                  <button class="reply-button" type="button">답글</button>
 
-                <form method="POST" action="{% url 'Qampus:like_reply' reply.id %}">
+                  <form class="comment-like-form"
+                  method="POST" action="{% url 'Qampus:like_comment' comment.id %}">
                     {% csrf_token %}
-                    <button type="submit">좋아요</button>
+                    <button
+                      class="comment-like-box"
+                      type="submit"
+                      data-like-type="comment"
+                      data-like-id="{{ comment.id }}"
+                    >
+                      <img
+                        class="comment-like-img"
+                        src="{% static 'icons/heart-black.svg' %}"
+                        alt="댓글 좋아요"
+                      />
+                      <span class="comment-like-count"
+                        >{{ comment.like_count }}</span
+                      >
+                    </button>
+                  </form>
+                </div>
+
+                <!-- 댓글 수정 -->
+                <form
+                  class="comment-edit-form hidden"
+                  method="POST"
+                  action="{% url 'Qampus:update_comment' comment.id %}"
+                >
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    name="content"
+                    value="{{ comment.content }}"
+                    required
+                  />
+                  <button type="submit">댓글 수정</button>
                 </form>
 
-                <!-- 대댓글 수정 -->
-                <form method="POST" action="{% url 'Qampus:update_reply' reply.id %}">
+                <!-- 댓글 삭제 -->
+                <form
+                  class="comment-delete-form hidden"
+                  method="POST"
+                  action="{% url 'Qampus:delete_comment' comment.id %}"
+                >
+                  {% csrf_token %}
+                  <button type="submit">댓글 삭제</button>
+                </form>
+
+                <!-- 대댓글 작성 -->
+                <form
+                  class="reply-form hidden"
+                  method="POST"
+                  action="{% url 'Qampus:create_reply' comment.id %}"
+                >
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    name="content"
+                    placeholder="답글을 입력하세요"
+                    required
+                  />
+                  <button type="submit">등록</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- 대댓글 목록 -->
+            {% for reply in comment.replies.all %}
+            <div class="re-comment-item">
+              <div class="comment-user-box">
+                <img
+                  class="comment-user-img"
+                  src="{% static 'icons/user.svg' %}"
+                  alt="사용자 이미지"
+                />
+                <p>익명</p>
+
+                <button class="comment-menu-button" type="button">
+                  <img
+                    class="comment-ellipsis-img"
+                    src="{% static 'icons/ellipsis-vertical-g.svg' %}"
+                    alt="답글 메뉴"
+                  />
+                </button>
+              </div>
+
+              <div class="comment-content">
+                <p class="comment-content-text">{{ reply.content }}</p>
+
+                <div class="comment-etc">
+                  <p>{{ reply.created_at|date:"y/m/d" }}</p>
+
+                  <form class="comment-like-form"
+                  method="POST" action="{% url 'Qampus:like_reply' reply.id %}">
                     {% csrf_token %}
-                    <input type="text" name="content" value="{{ reply.content }}">
-                    <button type="submit">답글 수정</button>
+                    <button
+                      class="comment-like-box"
+                      type="submit"
+                      data-like-type="reply"
+                      data-like-id="{{ reply.id }}"
+                    >
+                      <img
+                        class="comment-like-img"
+                        src="{% static 'icons/heart-black.svg' %}"
+                        alt="답글 좋아요"
+                      />
+                      <span class="comment-like-count"
+                        >{{ reply.like_count }}</span
+                      >
+                    </button>
+                  </form>
+                </div>
+
+                <!-- 대댓글 수정 -->
+                <form
+                  class="reply-edit-form hidden"
+                  method="POST"
+                  action="{% url 'Qampus:update_reply' reply.id %}"
+                >
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    name="content"
+                    value="{{ reply.content }}"
+                    required
+                  />
+                  <button type="submit">답글 수정</button>
                 </form>
 
                 <!-- 대댓글 삭제 -->
-                <form method="POST" action="{% url 'Qampus:delete_reply' reply.id %}">
-                    {% csrf_token %}
-                    <button type="submit">답글 삭제</button>
+                <form
+                  class="reply-delete-form hidden"
+                  method="POST"
+                  action="{% url 'Qampus:delete_reply' reply.id %}"
+                >
+                  {% csrf_token %}
+                  <button type="submit">답글 삭제</button>
                 </form>
+              </div>
             </div>
-        {% endfor %}
+            {% endfor %} {% endfor %}
+          </div>
+        </section>
 
-        <!-- 대댓글 작성 -->
-        <form method="POST" action="{% url 'Qampus:create_reply' comment.id %}">
-            {% csrf_token %}
-            <input type="text" name="content" placeholder="답글을 입력하세요">
-            <button type="submit">답글 작성</button>
+        <!-- 댓글 입력창 -->
+        <form
+          class="input-comment-box"
+          method="POST"
+          action="{% url 'Qampus:create_comment' post.id %}"
+        >
+          {% csrf_token %}
+          <input
+            class="input-comment"
+            type="text"
+            name="content"
+            maxlength="200"
+            placeholder="답변을 입력해보세요"
+            required
+          />
+          <button class="submit" type="submit">등록</button>
         </form>
+
+        <!-- 게시글 수정/삭제 모달 -->
+        <div class="post-modal post-option-modal hidden">
+          <div class="post-modal-box modal-comment">
+            <a class="edit-button" href="{% url 'Qampus:update' post.id %}">
+              수정하기
+              <img
+                class="edit-icon"
+                src="{% static 'icons/pencil-b.svg' %}"
+                alt="수정"
+              />
+              <img
+                class="edit-icon-active"
+                src="{% static 'icons/pencil-w.svg' %}"
+                alt="수정"
+              />
+            </a>
+
+            <button class="delete-button active" type="button">
+              삭제하기
+              <img
+                class="delete-icon"
+                src="{% static 'icons/trash-b.svg' %}"
+                alt="삭제"
+              />
+              <img
+                class="delete-icon-active"
+                src="{% static 'icons/trash-w.svg' %}"
+                alt="삭제"
+              />
+            </button>
+          </div>
+        </div>
+        <!-- 댓글 수정/삭제 모달 -->
+        <div class="post-modal comment-option-modal hidden">
+          <div class="post-modal-box">
+            <button class="edit-button comment-edit-button" type="button">
+              수정하기
+              <img
+                class="edit-icon"
+                src="{% static 'icons/pencil-b.svg' %}"
+                alt="수정"
+              />
+              <img
+                class="edit-icon-active"
+                src="{% static 'icons/pencil-w.svg' %}"
+                alt="수정"
+              />
+            </button>
+
+            <button class="delete-button comment-delete-button" type="button">
+              삭제하기
+              <img
+                class="delete-icon"
+                src="{% static 'icons/trash-b.svg' %}"
+                alt="삭제"
+              />
+              <img
+                class="delete-icon-active"
+                src="{% static 'icons/trash-w.svg' %}"
+                alt="삭제"
+              />
+            </button>
+          </div>
+        </div>
+        <!-- 실제 게시글 삭제 form -->
+        <form
+          id="post-delete-form"
+          class="hidden"
+          method="POST"
+          action="{% url 'Qampus:delete' post.id %}"
+        >
+          {% csrf_token %}
+        </form>
+
+        <!-- 삭제 확인 모달 -->
+        <div class="delete-confirm-overlay hidden">
+          <div class="delete-confirm-modal">
+            <p class="delete-confirm-text">삭제하시겠습니까?</p>
+
+            <div class="delete-confirm-btn-box">
+              <button class="btn-yes" type="button">예</button>
+              <button class="btn-no" type="button">아니요</button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-{% endfor %}
+
+    <script src="{% static 'js/board-detail.js' %}"></script>
+  </body>
+</html>

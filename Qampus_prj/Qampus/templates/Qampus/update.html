@@ -1,26 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>질문 올리기</h2>
-    <form method="POST" action="{% url 'Qampus:update' post.id %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" value="{{ post.title }}" name="title"><br><br>
-        <textarea name="content">{{ post.content }}</textarea><br><br>
-        
-    <select name="category">
-        {% for category in categories %}
-            <option value="{{ category.id }}" {% if category in post.category.all %}selected{% endif %}>
-                {{ category.name }}
-            </option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <input type="submit" value="완료">
-    </form>
-</body>
+{% load static %}
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>질문 수정</title>
+
+    <link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/board-write.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/board-edit.css' %}" />
+  </head>
+
+  <body>
+    <!-- 모바일 전용 화면 -->
+    <div class="app">
+      <!-- 헤더: 질문 수정 및 완료버튼 -->
+      <header class="header">
+<a class="header-left post-cancel-button" href="{% url 'Qampus:detail' post.id %}">
+  <img
+    class="head-left-img post-cancel-icon"
+    src="{% static 'icons/cancel.svg' %}"
+    alt="닫기"
+  />
+</a>
+
+  <h1>질문 수정</h1>
+
+  <button
+    class="header-right header-text-button post-ok-btn"
+    type="submit"
+    form="updatePostForm"
+  >
+    완료
+  </button>
+</header>
+
+      <main class="main">
+        <!-- 질문 수정 폼 -->
+        <form
+          id="updatePostForm"
+          class="write-post-form"
+          method="POST"
+          action="{% url 'Qampus:update' post.id %}"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+
+          <input
+            type="text"
+            name="title"
+            class="form-title"
+            maxlength="50"
+            placeholder="제목을 입력해주세요."
+            value="{{ post.title }}"
+            required
+          />
+
+          <textarea
+            name="content"
+            autocomplete="off"
+            class="form-content"
+            maxlength="1000"
+            placeholder="궁금한 내용을 자세히 적어주세요. 구체적일수록 더 좋은 답변을 받을 수 있어요."
+            required
+          >
+{{ post.content }}</textarea
+          >
+
+          <!-- 선택된 카테고리 값을 Django로 보내는 hidden input -->
+          <input
+            type="hidden"
+            name="category"
+            id="categoryInput"
+            value="{% for category in post.category.all %}{% if forloop.first %}{{ category.id }}{% endif %}{% endfor %}"
+          />
+        </form>
+
+        <!-- 작성 가이드 -->
+        <section class="write-guide">
+          <ul class="select-category">
+            {% for category in categories %}
+            <li
+              data-category-id="{{ category.id }}"
+              class="{% if category in post.category.all %}active{% endif %}"
+            >
+              #{{ category.name }}
+            </li>
+            {% endfor %}
+          </ul>
+
+          <div class="text-guide">
+            ※ 질문 내용 관련 유의사항
+            <p class="text-guide">
+              · 질문의 제목과 본문은 내용을 명확히 알 수 있도록 작성해 주세요.
+              <br />
+              · 동일하거나 유사한 질문을 반복적으로 게시하는 행위는 제한될 수
+              있습니다.
+              <br />
+              · 허위 정보, 확인되지 않은 소문, 오해를 불러일으킬 수 있는 내용은
+              작성하지 말아 주세요.
+              <br />
+              · 특정 개인, 단체, 기관을 비방하거나 명예를 훼손하는 내용은
+              금지됩니다.
+              <br />
+              · 개인정보, 연락처, 계정 정보 등 타인의 사생활을 침해할 수 있는
+              내용은 게시할 수 없습니다.
+            </p>
+          </div>
+
+          <div class="text-guide">
+            ※ 첨부파일 및 이미지 관련 유의사항
+            <p class="text-guide">
+              · 저작권을 침해하거나 무단으로 공유된 자료는 첨부할 수 없습니다.
+              <br />
+              · 타인의 얼굴, 이름, 연락처, 학번 등 식별 가능한 정보가 포함된
+              이미지는 게시하지 말아 주세요.
+              <br />
+              · 게시글 내용과 무관한 이미지 또는 불쾌감을 줄 수 있는 이미지는
+              제한될 수 있습니다.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{% static 'js/board-edit.js' %}"></script>
+  </body>
 </html>
