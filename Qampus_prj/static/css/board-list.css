@@ -231,14 +231,14 @@
     flex-direction: column;
 
     width: 388px;
-    height: 114px;
+    min-height: 114px;
     /* padding-bottom: 20px; */
     padding: 20px 20px 20px 20px;
 }
 
 .bigBoxForpost {
     display: block;
-    width: 390px;
+    width: 100%;
     border-bottom: 1px solid #D9D9D9;
     text-decoration: none;
     color: inherit;
@@ -311,6 +311,15 @@
     align-items: center;
 
     gap: 16px;
+}
+
+.numOfHeart, .numOfComment {
+    color: #7B7B7B;
+
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
 }
 
 .postBtn {

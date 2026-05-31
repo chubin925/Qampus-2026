@@ -24,7 +24,7 @@
         </a>
 
         <a href="{% url 'Qampus:main' %}">
-          <h1>질의 응답</h1>
+          <h1 class="qna">질의 응답</h1>
         </a>
 
         <button class="header-right post-menu-button" type="button">
@@ -71,10 +71,12 @@
           <!-- 좋아요, 댓글, 스크랩 영역 -->
           <div class="reaction">
             <!-- 게시글 좋아요 -->
-            <form class="reaction-form">
+            <form class="reaction-form"
+            method="POST" action="{% url 'Qampus:like_post' post.id %}">
+              {% csrf_token %}
               <button
                 class="like-box"
-                type="button"
+                type="submit"
                 data-post-id="{{ post.id }}"
               >
                 <img
@@ -108,10 +110,12 @@
             </div>
 
             <!-- 게시글 스크랩 -->
-            <form class="reaction-form">
+            <form class="reaction-form" 
+            method="POST" action="{% url 'Qampus:scrap_post' post.id %}">
+            {% csrf_token %}
               <button
                 class="scrap-box"
-                type="button"
+                type="submit"
                 data-post-id="{{ post.id }}"
               >
                 <img
@@ -183,10 +187,12 @@
 
                   <button class="reply-button" type="button">답글</button>
 
-                  <form class="comment-like-form">
+                  <form class="comment-like-form"
+                  method="POST" action="{% url 'Qampus:like_comment' comment.id %}">
+                    {% csrf_token %}
                     <button
                       class="comment-like-box"
-                      type="button"
+                      type="submit"
                       data-like-type="comment"
                       data-like-id="{{ comment.id }}"
                     >
@@ -272,10 +278,12 @@
                 <div class="comment-etc">
                   <p>{{ reply.created_at|date:"y/m/d" }}</p>
 
-                  <form class="comment-like-form">
+                  <form class="comment-like-form"
+                  method="POST" action="{% url 'Qampus:like_reply' reply.id %}">
+                    {% csrf_token %}
                     <button
                       class="comment-like-box"
-                      type="button"
+                      type="submit"
                       data-like-type="reply"
                       data-like-id="{{ reply.id }}"
                     >

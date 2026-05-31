@@ -49,6 +49,10 @@ button {
   cursor: pointer;
 }
 
+.qna {
+  margin-left: 15px;
+}
+
 .detail-back-button,
 .post-menu-icon {
   display: block;
