@@ -73,13 +73,15 @@
 .select-category {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
   list-style: none;
 
+  width: 100%;
   color: #a5a3a3;
   font-size: 14px;
   font-weight: 200;
+
+  padding: 0px;
 }
 
 .select-category li {

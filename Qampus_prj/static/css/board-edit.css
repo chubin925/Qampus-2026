@@ -1,133 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-.board-edit-header {
-  position: relative;
-}
-
-.board-edit-back-button {
-  cursor: pointer;
-}
-
-.board-edit-complete-button {
+.post-cancel-button {
   position: absolute;
-  right: 20px;
+  left: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border: none;
   background: none;
   cursor: pointer;
+}
 
+.post-cancel-button img {
+  display: block;
+}
+
+/* 수정 페이지 완료 버튼은 활성처럼 파란색으로 보이게 */
+.post-ok-btn {
   color: #2173f1;
-  font-size: 16px;
-  font-weight: 600;
 }
 
-/* 수정 페이지 메인 */
-.board-edit-main {
-  width: 100%;
+/* 카테고리가 4개 이상이거나 글자가 길 때 안 깨지게 */
+.select-category {
+  justify-content: flex-start;
 }
 
-/* 질문 수정 전체 영역 */
-.board-edit-section-content {
-  padding: 20px 20px 5px 20px;
-  border-bottom: #d9d9d9 1px solid;
-}
-
-/* 유저 정보 영역 */
-.board-edit-user {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  padding: 3px;
-  margin: 0px 0px 10px 0px;
-}
-
-.board-edit-user-img {
-  width: 44px;
-  height: 44px;
-}
-
-.board-edit-user-info {
-  margin: 0px;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 5px;
-}
-
-.board-edit-user-info p {
-  margin: 0px;
-  font-style: normal;
-  line-height: normal;
-}
-
-.board-edit-user-name {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.board-edit-user-time {
-  color: #7b7b7b;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-/* 수정 form */
-.board-edit-form {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 20px;
-}
-
-.board-edit-input-box {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.board-edit-label {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.board-edit-title-input,
-.board-edit-content-textarea {
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-
-  color: #000;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.board-edit-title-input::placeholder,
-.board-edit-content-textarea::placeholder {
-  color: #7b7b7b;
-}
-
-.board-edit-title-input {
-  min-height: 30px;
-}
-
-.board-edit-content-textarea {
-  min-height: 180px;
-  resize: none;
-  line-height: 1.5;
-}
-
-.board-edit-content-count {
-  align-self: flex-end;
-
-  color: #7b7b7b;
-  font-size: 12px;
-  font-weight: 400;
+.select-category li {
+  white-space: nowrap;
 }
