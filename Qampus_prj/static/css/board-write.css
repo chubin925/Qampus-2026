@@ -13,6 +13,10 @@
   line-height: 1;
 
   cursor: pointer;
+
+  justify-content: flex-end;
+  margin-top: 12px;
+  margin-right: 10px;
 }
 
 .box {
