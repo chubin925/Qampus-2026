@@ -127,8 +127,28 @@ body {
 }
 
 .head-right-img {
-  position: absolute;
   right: 20px;
   width: 24px;
   height: 24px;
+}
+
+.head-left a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+  text-decoration: none;
+  line-height: 0;
+}
+
+/* a 안에 들어간 이미지도 기존 이미지랑 똑같이 */
+.head-left a .head-left-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
 }

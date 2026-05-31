@@ -19,7 +19,6 @@ button {
 }
 
 .header > a:first-child {
-  position: absolute;
   left: 20px;
 
   display: flex;
@@ -47,10 +46,6 @@ button {
   justify-content: center;
 
   cursor: pointer;
-}
-
-.qna {
-  margin-left: 15px;
 }
 
 .detail-back-button,
@@ -726,11 +721,6 @@ button.comment-like-box {
 
 .comment-like-box.active .comment-like-count {
   color: #2173f1;
-}
-
-.post-ok-btn {
-  position: absolute;
-  left: 0px;
 }
 
 /* 가장 아래에 */

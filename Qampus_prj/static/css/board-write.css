@@ -15,7 +15,7 @@
   cursor: pointer;
 
   justify-content: flex-end;
-  margin-top: 12px;
+
   margin-right: 10px;
 }
 
@@ -26,10 +26,8 @@
 
 .header {
   border-bottom: none;
-  display: flex;
-  flex-direction: row;
+  align-items: center;
 }
-
 
 .form-title {
   width: 100%;
@@ -155,4 +153,13 @@
 
 .footer-attach input {
   display: none;
+}
+
+.header h1 {
+  position: absolute;
+  top: 20px !important;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
 }
