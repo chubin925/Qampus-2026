@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,4 +23,79 @@
     <input type="submit" value="완료">
     </form>
 </body>
+</html> {% endcomment %}
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/board-edit.css" />
+    <title>질문 수정</title>
+  </head>
+  <body>
+    <!-- 모바일 전용 화면 -->
+    <div class="app">
+      <!-- 헤더: 질문 수정 -->
+      <header class="header board-edit-header">
+        <img
+          class="head-left-img board-edit-back-button"
+          src="../assets/icons/chevron-left.svg"
+          alt="뒤로가기"
+        />
+        <h1>질문 수정</h1>
+        <button class="board-edit-complete-button" type="button">완료</button>
+      </header>
+
+      <main class="main board-edit-main">
+        <!-- 질문 수정 영역 -->
+        <section class="board-edit-section-content">
+          <!-- 질문자 유저정보 -->
+          <div class="board-edit-user">
+            <img
+              class="board-edit-user-img"
+              src="../assets/icons/user.svg"
+              alt="유저 이미지"
+            />
+            <div class="board-edit-user-info">
+              <p class="board-edit-user-name">질문자</p>
+              <p class="board-edit-user-time">5/26 21:10</p>
+            </div>
+          </div>
+
+          <!-- 질문 제목, 내용 수정 -->
+          <form class="board-edit-form">
+            <div class="board-edit-input-box">
+              <input
+                id="boardEditTitle"
+                class="board-edit-title-input"
+                type="text"
+                maxlength="50"
+                placeholder="질문 제목을 입력해주세요"
+              />
+            </div>
+
+            <div class="board-edit-input-box">
+              <textarea
+                id="boardEditContent"
+                class="board-edit-content-textarea"
+                maxlength="1000"
+                placeholder="질문 내용을 입력해주세요"
+              ></textarea>
+
+              <p class="board-edit-content-count">
+                <span class="board-edit-content-length">0</span>/1000
+              </p>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+
+  <script src="../js/board-edit.js"></script>
 </html>
