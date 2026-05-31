@@ -1,4 +1,7 @@
 *.sqlite3
 db.sqlite3
+Qampus_prj/myvenv/
+myvenv/
 __pycache__/
 *.pyc
+
