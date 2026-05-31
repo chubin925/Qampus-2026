@@ -1,5 +1,4 @@
 from django.db import models
-#from users.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length= 50, unique= True)
@@ -12,11 +11,14 @@ class Post(models.Model):
     title = models.CharField(max_length= 50)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add= True)
-    likes = models.PositiveBigIntegerField(default=0)
-    scraps = models.PositiveBigIntegerField(default=0)
+    category = models.ManyToManyField(Category, related_name="posts")    
+    like_count = models.PositiveIntegerField(default=0)
+    scrap_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'[{self.id}] {self.title}'
+    
+
     
 class Comment(models.Model):
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="comments")

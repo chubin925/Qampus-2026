@@ -16,4 +16,8 @@ urlpatterns = [
     path("comments/<int:comment_id>/replies/create/", create_reply, name="create_reply"),
     path("replies/<int:reply_id>/update/", update_reply, name="update_reply"),
     path("replies/<int:reply_id>/delete/", delete_reply, name="delete_reply"),
+    path("posts/<int:post_id>/scrap/", scrap_post, name="scrap_post"),
+    path("posts/<int:post_id>/like/", like_post, name="like_post"),
+    path('like/comment/<int:comment_id>/', like_comment, name='like_comment'),
+    path('like/reply/<int:reply_id>/', like_reply, name='like_reply'),
 ]
