@@ -19,7 +19,7 @@
             src="{% static 'icons/ChatsCircle.svg' %}"
             alt="헤더채팅아이콘"
           />
-          <h1>질의응답</h1>
+          <h1>질의 응답</h1>
         </div>
 
         <div class="head-right">
@@ -40,15 +40,54 @@
 
       <a href="{% url 'Qampus:create' %}" class="popupPostBtn">
         <p>질문 올리기</p>
+<<<<<<< HEAD
         <img src="{% static 'icons/pencil-b.svg' %}" alt="질문 올리기"/>
+=======
+        <img src="{% static 'icons/pencil-b.svg' %}" alt="질문 올리기" />
+>>>>>>> origin/develop
       </a>
 
       <form action="{% url 'Qampus:main' %}" method="POST" class="navigation">
         {% csrf_token %}
+<<<<<<< HEAD
         <button type="submit" name="category_slug" value="" class="{% if not selected_slug %}selected_category{% else %}category{% endif %}">전체</button>
         <button type="submit" name="category_slug" value="class" class="{% if selected_slug == 'class' %}selected_category{% else %}category{% endif %}">수업</button>
         <button type="submit" name="category_slug" value="program" class="{% if selected_slug == 'program' %}selected_category{% else %}category{% endif %}">학교 프로그램</button>
         <button type="submit" name="category_slug" value="procedure" class="{% if selected_slug == 'procedure' %}selected_category{% else %}category{% endif %}">행정·절차</button>
+=======
+        <button
+          type="submit"
+          name="category_slug"
+          value=""
+          class="{% if not selected_slug %}selected_category{% else %}category{% endif %}"
+        >
+          전체
+        </button>
+        <button
+          type="submit"
+          name="category_slug"
+          value="class"
+          class="{% if selected_slug == 'class' %}selected_category{% else %}category{% endif %}"
+        >
+          수업
+        </button>
+        <button
+          type="submit"
+          name="category_slug"
+          value="program"
+          class="{% if selected_slug == 'program' %}selected_category{% else %}category{% endif %}"
+        >
+          학교 프로그램
+        </button>
+        <button
+          type="submit"
+          name="category_slug"
+          value="procedure"
+          class="{% if selected_slug == 'procedure' %}selected_category{% else %}category{% endif %}"
+        >
+          행정·절차
+        </button>
+>>>>>>> origin/develop
       </form>
 
       <div class="selected_line"></div>
@@ -56,6 +95,7 @@
       <main class="main">
         <button id="howtolist" type="button">
           <p>
+<<<<<<< HEAD
             {% if selected_sort == 'latest' %}
               최신순
             {% else %}
@@ -80,6 +120,44 @@
     
             <button class="{% if selected_sort == 'latest' %}recent active{% else %}recent{% endif %}" 
             type="submit" name="sort" value="latest">
+=======
+            {% if selected_sort == 'latest' %} 최신순 {% else %} 추천순 {% endif%}
+          </p>
+          <img src="{% static 'icons/downvector.svg' %}" alt="아래방향화살표" />
+        </button>
+
+        <div class="howtolistPopup">
+          <form method="GET" action="{% url 'Qampus:main' %}">
+            <input
+              type="hidden"
+              name="category_slug"
+              value="{{ selected_slug }}"
+            />
+
+            <button
+              class="{% if selected_sort == 'popular' %}recommend active{% else %}recommend{% endif %}"
+              type="submit"
+              name="sort"
+              value="popular"
+            >
+              추천순
+            </button>
+          </form>
+
+          <form method="GET" action="{% url 'Qampus:main' %}">
+            <input
+              type="hidden"
+              name="category_slug"
+              value="{{ selected_slug }}"
+            />
+
+            <button
+              class="{% if selected_sort == 'latest' %}recent active{% else %}recent{% endif %}"
+              type="submit"
+              name="sort"
+              value="latest"
+            >
+>>>>>>> origin/develop
               최신순
             </button>
           </form>
@@ -97,12 +175,20 @@
 
               <div class="postReaction">
                 <div class="heart">
+<<<<<<< HEAD
                   <img src="{% static 'icons/heart-blue.svg' %}" alt="빈하트"/>
+=======
+                  <img src="{% static 'icons/heart-blue.svg' %}" alt="빈하트" />
+>>>>>>> origin/develop
                   <p class="numOfHeart">{{ post.like_count }}</p>
                 </div>
 
                 <div class="comment">
+<<<<<<< HEAD
                   <img src="{% static 'icons/comment.svg' %}" alt="댓글"/>
+=======
+                  <img src="{% static 'icons/comment.svg' %}" alt="댓글" />
+>>>>>>> origin/develop
                   <div class="numOfComment">{{ post.total_comment_count }}</div>
                 </div>
               </div>
@@ -111,6 +197,7 @@
         </a>
         {% empty %}
         <div class="none-post-notice">
+<<<<<<< HEAD
           <p> 아직 작성된 질문이 없어요.</p>
             {% if selected_slug == 'class' %}
               <p>수업에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
@@ -122,11 +209,28 @@
               <p>학교 생활 중 궁금한 건<br />무엇이든 질문하세요!</p>
             {% endif %}
           </div>
+=======
+          <p>아직 작성된 질문이 없어요.</p>
+          {% if selected_slug == 'class' %}
+          <p>수업에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+          {% elif selected_slug == 'program' %}
+          <p>학교 프로그램에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+          {% elif selected_slug == 'procedure' %}
+          <p>행정/절차에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+          {% else %}
+          <p>학교 생활 중 궁금한 건<br />무엇이든 질문하세요!</p>
+          {% endif %}
+        </div>
+>>>>>>> origin/develop
         {% endfor %}
       </main>
 
       <a href="{% url 'Qampus:create' %}" class="postBtn">
+<<<<<<< HEAD
         <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기"/>
+=======
+        <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기" />
+>>>>>>> origin/develop
         <p class="uploadQuestion">질문 올리기</p>
       </a>
     </div>
