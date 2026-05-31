@@ -3,10 +3,9 @@ from .models import *
 from django.shortcuts import get_object_or_404
 
 def main(request):
-    category_slug = request.POST.get('category_slug', '')
+    category_slug = request.GET.get('category_slug', '')
     selected_sort = request.GET.get('sort', 'latest')
     posts = Post.objects.all()
-    
     
     if category_slug:
         posts = Post.objects.filter(category__slug=category_slug).order_by('-created_at')
@@ -32,6 +31,7 @@ def create(request, slug=None):
         title = request.POST.get('title')
         content = request.POST.get('content')
         category_ids = request.POST.getlist('category')
+        print(f"DEBUG: category_ids = {category_ids}")
         category_list = [get_object_or_404(Category, id=category_id) for category_id in category_ids]
 
         post = Post.objects.create(

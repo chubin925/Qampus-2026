@@ -43,7 +43,7 @@
         <img src="{% static 'icons/pencil-b.svg' %}" alt="질문 올리기"/>
       </a>
 
-      <form action="{% url 'Qampus:main' %}" method="POST" class="navigation">
+      <form action="{% url 'Qampus:main' %}" method="GET" class="navigation">
         {% csrf_token %}
         <button type="submit" name="category_slug" value="" class="{% if not selected_slug %}selected_category{% else %}category{% endif %}">전체</button>
         <button type="submit" name="category_slug" value="class" class="{% if selected_slug == 'class' %}selected_category{% else %}category{% endif %}">수업</button>

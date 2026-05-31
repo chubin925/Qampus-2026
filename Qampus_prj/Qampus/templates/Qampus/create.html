@@ -94,10 +94,9 @@
           <!--작성 가이드-->
           <section class="write-guide">
             <ul class="select-category">
-              <li>#수업</li>
-              <li>#학교 프로그램</li>
-              <li>#행정·절차</li>
-              <li>#기타</li>
+              {% for category in categories %}
+                <li data-id="{{ category.id }}">#{{ category.name }}</li>
+              {% endfor %}
             </ul>
 
             <select name="category" id="categorySelect" multiple style="display: none;">
