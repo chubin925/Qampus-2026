@@ -17,17 +17,13 @@
     <div class="app">
       <!-- 헤더: 질문 수정 및 완료버튼 -->
       <header class="header">
-  <button
-    class="header-left post-cancel-button"
-    type="button"
-    onclick="history.back()"
-  >
-    <img
-      class="head-left-img post-cancel-icon"
-      src="{% static 'icons/cancel.svg' %}"
-      alt="닫기"
-    />
-  </button>
+<a class="header-left post-cancel-button" href="{% url 'Qampus:detail' post.id %}">
+  <img
+    class="head-left-img post-cancel-icon"
+    src="{% static 'icons/cancel.svg' %}"
+    alt="닫기"
+  />
+</a>
 
   <h1>질문 수정</h1>
 

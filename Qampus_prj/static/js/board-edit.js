@@ -1,7 +1,5 @@
 const form = document.querySelector("#updatePostForm");
 
-const backButton = document.querySelector(".post-cancel-button");
-
 const titleInput = document.querySelector(".form-title");
 const contentTextarea = document.querySelector(".form-content");
 
@@ -27,13 +25,6 @@ const activeCategory = document.querySelector(".select-category li.active");
 
 if (activeCategory && categoryInput) {
   categoryInput.value = activeCategory.dataset.categoryId;
-}
-
-// 뒤로가기
-if (backButton) {
-  backButton.addEventListener("click", () => {
-    history.back();
-  });
 }
 
 // 제출 전 검사
