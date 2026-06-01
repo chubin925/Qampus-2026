@@ -34,10 +34,11 @@ if (form) {
   form.addEventListener("submit", (event) => {
     const titleValue = titleInput.value.trim();
     const contentValue = contentInput.value.trim();
-    const categoryValue = categorySelect.value.trim();
+
+    // li에 active가 붙었는지 확인
     const activeCategory = document.querySelector(".select-category li.active");
 
-    if (categoryValue === "") {
+    if (!activeCategory) {
       event.preventDefault();
       alert("카테고리를 선택해주세요.");
       return;
@@ -57,10 +58,4 @@ if (form) {
       return;
     }
   });
-
-  if (!activeCategory) {
-    event.preventDefault();
-    alert("카테고리를 선택해주세요.");
-    return;
-  }
 }
