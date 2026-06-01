@@ -25,7 +25,7 @@
         <div class="head-right">
           <img
             class="head-right-img1"
-            src="{% static 'icons/search.svg' %}"
+            src="{% static 'icons/test.png' %}"
             alt="헤더돋보기아이콘"
           />
           <button type="button">
@@ -84,7 +84,8 @@
       <main class="main">
         <button id="howtolist" type="button">
           <p>
-            {% if selected_sort == 'latest' %} 최신순 {% else %} 추천순 {% endif%}
+            {% if selected_sort == 'latest' %} 최신순 {% else %} 추천순
+            {%endif%}
           </p>
           <img src="{% static 'icons/downvector.svg' %}" alt="아래방향화살표" />
         </button>
