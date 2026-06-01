@@ -48,6 +48,7 @@ def create(request, slug=None):
 
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
+    categories = post.category.all()
     comments = post.comments.all().order_by('-created_at')
     comment_count = post.comments.count()
     reply_count = Reply.objects.filter(comment__post=post).count()
@@ -60,6 +61,7 @@ def detail(request, id):
         content = request.POST.get('content')
     return render(request, 'Qampus/detail.html', 
                 {'post':post,
+                 'categories': categories,
                 'comments': comments,
                 'like_count': like_count,
                 'scrap_count': scrap_count,
