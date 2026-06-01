@@ -38,12 +38,6 @@ if (form) {
     // li에 active가 붙었는지 확인
     const activeCategory = document.querySelector(".select-category li.active");
 
-    if (!activeCategory) {
-      event.preventDefault();
-      alert("카테고리를 선택해주세요.");
-      return;
-    }
-
     if (titleValue === "") {
       event.preventDefault();
       alert("제목을 입력해주세요.");
@@ -55,6 +49,12 @@ if (form) {
       event.preventDefault();
       alert("내용을 입력해주세요.");
       contentInput.focus();
+      return;
+    }
+
+    if (!activeCategory) {
+      event.preventDefault();
+      alert("카테고리를 선택해주세요.");
       return;
     }
   });
