@@ -1,3 +1,10 @@
+.main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+}
+
 .post-cancel-button {
   display: flex;
   align-items: center;

@@ -75,18 +75,26 @@
   font-family: Pretendard;
 }
 
+html,
 body {
   margin: 0;
+  width: 100%;
+  height: 100%;
   background-color: #ebebeb;
+  overflow: hidden;
 }
 
 /* 모바일 화면크기 - 아이폰 17 기준 */
 .app {
   width: 402px;
-  min-height: 874px;
+  height: 100dvh;
   margin: 0 auto;
   position: relative;
   background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 @media (min-width: 430px) {
@@ -108,6 +116,8 @@ body {
   border-bottom: 1px solid #eeeeee;
   gap: 10px;
   position: relative;
+
+  flex-shrink: 0;
 }
 
 .header h1 {
