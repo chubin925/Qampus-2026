@@ -57,9 +57,11 @@
           <div class="content-detail">
             <h4>{{ post.title }}</h4>
             <p>{{ post.content }}</p>
-          </div>
 
-    
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="게시글 이미지" />
+            {% endif %}
+          </div>
 
           <!-- 카테고리 -->
           <div class="category-box">
@@ -73,8 +75,11 @@
           <!-- 좋아요, 댓글, 스크랩 영역 -->
           <div class="reaction">
             <!-- 게시글 좋아요 -->
-            <form class="reaction-form"
-            method="POST" action="{% url 'Qampus:like_post' post.id %}">
+            <form
+              class="reaction-form"
+              method="POST"
+              action="{% url 'Qampus:like_post' post.id %}"
+            >
               {% csrf_token %}
               <button
                 class="like-box"
@@ -112,9 +117,12 @@
             </div>
 
             <!-- 게시글 스크랩 -->
-            <form class="reaction-form" 
-            method="POST" action="{% url 'Qampus:scrap_post' post.id %}">
-            {% csrf_token %}
+            <form
+              class="reaction-form"
+              method="POST"
+              action="{% url 'Qampus:scrap_post' post.id %}"
+            >
+              {% csrf_token %}
               <button
                 class="scrap-box"
                 type="submit"
@@ -189,8 +197,11 @@
 
                   <button class="reply-button" type="button">답글</button>
 
-                  <form class="comment-like-form"
-                  method="POST" action="{% url 'Qampus:like_comment' comment.id %}">
+                  <form
+                    class="comment-like-form"
+                    method="POST"
+                    action="{% url 'Qampus:like_comment' comment.id %}"
+                  >
                     {% csrf_token %}
                     <button
                       class="comment-like-box"
@@ -280,8 +291,11 @@
                 <div class="comment-etc">
                   <p>{{ reply.created_at|date:"y/m/d" }}</p>
 
-                  <form class="comment-like-form"
-                  method="POST" action="{% url 'Qampus:like_reply' reply.id %}">
+                  <form
+                    class="comment-like-form"
+                    method="POST"
+                    action="{% url 'Qampus:like_reply' reply.id %}"
+                  >
                     {% csrf_token %}
                     <button
                       class="comment-like-box"

@@ -29,6 +29,9 @@ def create(request, slug=None):
     categories = Category.objects.all()
 
     if request.method == 'POST':
+        print("FILES:", request.FILES)
+        print("image:", request.FILES.get('image'))
+
         title = request.POST.get('title', '').strip()
         content = request.POST.get('content', '').strip()
         image = request.FILES.get('image')

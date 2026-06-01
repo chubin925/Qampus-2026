@@ -36,7 +36,13 @@
 
       <main class="main">
         <!-- 새 질문 작성 폼 -->
-        <form class="write-post-form" id="createForm" method="POST" action="{% url 'Qampus:create' %}">
+        <form
+          class="write-post-form"
+          id="createForm"
+          method="POST"
+          action="{% url 'Qampus:create' %}"
+          enctype="multipart/form-data"
+        >
           {% csrf_token %}
         
           <input
@@ -102,26 +108,27 @@
           </p>
           <br />
           </section>  
+      
+
+          <section class="footer-attach">
+            <!--이미지 삽입-->
+            <label for="imageInput">
+              <img src="{% static 'icons/album.svg' %}" />
+            </label>
+            <input type="file" accept="image/*" id="imageInput" name="image"/>
+
+            <!--파일 삽입-->
+            <label for="fileInput">
+              <img src="{% static 'icons/attach.svg' %}" />
+            </label>
+            <input type="file" id="fileInput" />
+          </section>
         </form>
-
-        <section class="footer-attach">
-          <!--이미지 삽입-->
-          <label for="imageInput">
-            <img src="{% static 'icons/album.svg' %}" />
-          </label>
-          <input name="image" type="file" accept="image/*" id="imageInput" />
-
-          <!--파일 삽입-->
-          <label for="fileInput">
-            <img src="{% static 'icons/attach.svg' %}" />
-          </label>
-          <input type="file" id="fileInput" />
-        </section>
       </main>
     </div>
   </body>
 
-  <!---->
+
   {% if error %}
   <script>
     alert("{{ error|escapejs }}");
