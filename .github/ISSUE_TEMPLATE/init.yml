@@ -1,0 +1,44 @@
+name: Init
+description: 프로젝트 초기 설정 및 환경 구성 시 해당 이슈템플릿을 사용해주세요.
+title: "Init/ "
+labels: ["init"]
+assignees: []
+
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: ⚙️ 초기 설정 설명
+      description: 어떤 초기 설정을 진행할지 설명해주세요.
+      placeholder: 예) Django 프로젝트 기본 구조 세팅
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: ✅ 작업 목록
+      description: 초기 세팅에 필요한 작업을 작성해주세요.
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: structure
+    attributes:
+      label: 📁 예상 구조
+      description: 폴더 구조나 설정 파일 변경 사항이 있다면 작성해주세요.
+      placeholder: 예) templates, static, accounts 앱 생성 등
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 📌 참고 사항
+      description: 공유해야 할 환경 변수, 설치 패키지, 명령어 등을 작성해주세요.
+      placeholder: 예) pip install django, requirements.txt 업데이트 필요
+    validations:
+      required: false
