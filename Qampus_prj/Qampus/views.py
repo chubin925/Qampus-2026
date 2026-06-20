@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 
 def main(request):
     category_slug = request.GET.get('category_slug', '')
@@ -253,10 +254,10 @@ def scrap_post(request, post_id):
 
     if post_id in scrapped_posts:
         if post.scrap_count > 0:
-            post.scrap_count -= 1
+            Post.objects.filter(id=post_id).update(scrap_count=F('scrap_count') - 1)
         scrapped_posts.remove(post_id)
     else:
-        post.scrap_count += 1
+        Post.objects.filter(id=post_id).update(scrap_count=F('scrap_count') + 1)
         scrapped_posts.append(post_id)
 
     post.save()
@@ -272,10 +273,10 @@ def like_post(request, post_id):
 
     if post_id in liked_posts:
         if post.like_count > 0:
-            post.like_count -= 1
+            Post.objects.filter(id=post_id).update(like_count=F('like_count') - 1)
         liked_posts.remove(post_id)
     else:
-        post.like_count += 1
+        Post.objects.filter(id=post_id).update(like_count=F('like_count') + 1)
         liked_posts.append(post_id)
 
     post.save()
@@ -292,10 +293,10 @@ def like_comment(request, comment_id):
 
     if comment_id in liked_comments:
         if comment.like_count > 0:
-            comment.like_count -= 1
+            Comment.objects.filter(id=comment_id).update(like_count=F('like_count') - 1)
         liked_comments.remove(comment_id)
     else:
-        comment.like_count += 1
+        Comment.objects.filter(id=comment_id).update(like_count=F('like_count') + 1)
         liked_comments.append(comment_id)
 
     comment.save()
@@ -311,10 +312,10 @@ def like_reply(request, reply_id):
 
     if reply_id in liked_replies:
         if reply.like_count > 0:
-            reply.like_count -= 1
+            Reply.objects.filter(id=reply_id).update(like_count=F('like_count') - 1)
         liked_replies.remove(reply_id)
     else:
-        reply.like_count += 1
+        Reply.objects.filter(id=reply_id).update(like_count=F('like_count') + 1)
         liked_replies.append(reply_id)
 
     reply.save()
