@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+</head>
+<body>
+    <h2>로그인</h2>
+    <form method="POST" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <p>
+            이메일 : {{ form.username }}
+            {{ form.username.errors }}
+        </p>
+
+        <p>
+            비밀번호 : {{ form.password }}
+            {{ form.password.errors }}
+        </p>
+        <button type="submit">login</button>
+    </form>
+
+    <p><a href="{% url 'accounts:signup' %}">
+        아직 회원이 아니신가요? 회원가입 하러 가기
+    </a></p>
+</body>
+</html>
