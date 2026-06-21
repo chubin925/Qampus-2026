@@ -2,26 +2,23 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.shortcuts import get_object_or_404
 from django.db.models import F
+from django.db.models import Count, Q
+
 
 def main(request):
     category_slug = request.GET.get('category_slug', '')
     selected_sort = request.GET.get('sort', 'latest')
-    posts = Post.objects.all()
-    
-    if category_slug:
-        posts = Post.objects.filter(category__slug=category_slug).order_by('-created_at')
-    else:
-        posts = Post.objects.all().order_by('-created_at')
 
+    posts = Post.objects.annotate(
+        total_comment_count=Count('comments', distinct=True) + Count('comments__replies', distinct=True)
+    )    
+
+    if category_slug:
+        posts = posts.filter(category__slug=category_slug)
     if selected_sort == 'popular':
         posts = posts.order_by('-like_count', '-created_at')
     else:
         posts = posts.order_by('-created_at')
-
-    for post in posts:
-        comment_count = post.comments.count()
-        reply_count = Reply.objects.filter(comment__post=post).count()
-        post.total_comment_count = comment_count + reply_count    
 
     return render(request, 'Qampus/main.html', {'posts': posts, 'selected_slug': category_slug, 'selected_sort':selected_sort})
     
@@ -83,7 +80,7 @@ def create(request, slug=None):
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
     categories = post.category.all()
-    comments = post.comments.all().order_by('-created_at')
+    comments = post.comments.all().order_by('-created_at').prefetch_related('replies')
     comment_count = post.comments.count()
     reply_count = Reply.objects.filter(comment__post=post).count()
     total_comment_count = comment_count + reply_count
@@ -104,6 +101,7 @@ def detail(request, id):
 
 def update(request, id):
     post = get_object_or_404(Post, id=id)
+    categories = Category.objects.all()
 
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -154,7 +152,6 @@ def update(request, id):
             
         post.save()
         return redirect('Qampus:detail', id=post.id)
-    categories = Category.objects.all()
     return render(request, 'Qampus/update.html', {'post':post, 'categories':categories})
 
 def delete(request, id):
