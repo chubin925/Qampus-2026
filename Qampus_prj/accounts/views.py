@@ -3,7 +3,7 @@ from .forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-from posts.models import Post
+from Qampus.models import Post
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -26,13 +26,13 @@ def login(request):
     form = AuthenticationForm(request, request.POST)
     if form.is_valid():
         auth_login(request, form.user_cache)
-        return redirect('posts:main')
+        return redirect('Qampus:main')
     return render(request, 'accounts/login.html', {'form': form})
 
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
-    return redirect('posts:main')
+    return redirect('Qampus:main')
 
 @login_required
 def mypage(request):
