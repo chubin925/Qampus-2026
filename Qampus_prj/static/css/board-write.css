@@ -15,7 +15,11 @@
 
   line-height: 1;
 
-  cursor: pointer;
+  cursor: default;
+}
+
+.post-ok-btn.active {
+  color: #444;
 }
 
 .box {

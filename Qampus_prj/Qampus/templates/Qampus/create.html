@@ -21,7 +21,7 @@
 {% endblock %}
   
 {% block header_right %}
-  <button type="submit" value="완료"   form="createForm" class="post-ok-btn">
+  <button type="submit" value="완료"   form="createForm" class="post-ok-btn" disabled>
     완료
   </button>
 {% endblock %}
@@ -131,5 +131,5 @@
 
   {% block script %}
   <script src="{% static 'js/board-write.js' %}"></script>
-  <script src="{% static 'js/board-write.js' %}"></script>
+
   {% endblock %}
