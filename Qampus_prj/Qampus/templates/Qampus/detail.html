@@ -9,16 +9,17 @@
 {% endblock %}
 
 {% block header_left %}
-    
+    <a class="main-url" href="{% url 'Qampus:main' %}">
     <img
       class="head-left-img detail-back-button"
       src="{% static 'icons/chevron-left.svg' %}"
       alt="뒤로가기"
     />
+    </a>
 {% endblock %}
 
 {% block header_title %}
-<a class="main-url" href="{% url 'Qampus:main' %}">
+<a href="{% url 'Qampus:main' %}">
   질의 응답
 </a>
 {% endblock %}
