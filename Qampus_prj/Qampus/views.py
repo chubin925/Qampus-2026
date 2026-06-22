@@ -9,6 +9,7 @@ from django.http import HttpResponseForbidden
 
 logger = logging.getLogger(__name__)
 
+@login_required
 def main(request):
     category_slug = request.GET.get('category_slug', '')
     selected_sort = request.GET.get('sort', 'latest')
@@ -189,11 +190,14 @@ def create_comment(request, post_id):
 
     if request.method == "POST":
         content = request.POST.get("content")
+        is_anonymous = request.POST.get("is_anonymous") == "on"
 
         if content:
             Comment.objects.create(
                 post=post,
-                content=content
+                content=content,
+                author=request.user,
+                is_anonymous=is_anonymous,
             )
 
     return redirect("Qampus:detail", post_id)
@@ -229,11 +233,15 @@ def create_reply(request, comment_id):
 
     if request.method == "POST":
         content = request.POST.get("content")
+        is_anonymous = request.POST.get("is_anonymous") == "on"
+
 
         if content:
             Reply.objects.create(
                 comment=comment,
-                content=content
+                content=content,
+                author=request.user,
+                is_anonymous=is_anonymous,
             )
 
     return redirect("Qampus:detail", comment.post.id)

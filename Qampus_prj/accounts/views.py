@@ -33,17 +33,3 @@ def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
     return redirect('Qampus:main')
-
-@login_required
-def mypage(request):
-    return render(request, 'accounts/mypage.html')
-
-@login_required
-def mypost(request):
-    posts = Post.objects.filter(author=request.user).order_by('-created_at')
-    return render(request, 'accounts/mypost.html', {'posts': posts})
-
-@login_required
-def myscrap(request):
-    scraped_posts = request.user.scraped_posts.all().order_by('-id')
-    return render(request, 'accounts/myscrap.html', {'scraped_posts': scraped_posts})

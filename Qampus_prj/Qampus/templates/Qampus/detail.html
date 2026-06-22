@@ -184,7 +184,15 @@
                   src="{% static 'icons/user.svg' %}"
                   alt="사용자 이미지"
                 />
-                <p>익명</p>
+                <p>
+                  {% if comment.is_anonymous %}
+                    익명
+                  {% elif comment.author %}
+                    {{ comment.author.nickname }}
+                  {% else %}
+                    익명
+                  {% endif %}
+                </p>
 
                 <button class="comment-menu-button" type="button">
                   <img
@@ -267,6 +275,9 @@
                     placeholder="답글을 입력하세요"
                     required
                   />
+                  <label>
+                    <input type="checkbox" name="is_anonymous" /> 익명
+                  </label>
                   <button type="submit">등록</button>
                 </form>
               </div>
@@ -281,7 +292,15 @@
                   src="{% static 'icons/user.svg' %}"
                   alt="사용자 이미지"
                 />
-                <p>익명</p>
+                <p>
+                  {% if reply.is_anonymous %}
+                    익명
+                  {% elif reply.author %}
+                    {{ reply.author.nickname }}
+                  {% else %}
+                    익명
+                  {% endif %}
+                </p>
 
                 <button class="comment-menu-button" type="button">
                   <img
@@ -368,6 +387,9 @@
             placeholder="답변을 입력해보세요"
             required
           />
+          <label>
+            <input type="checkbox" name="is_anonymous" /> 익명
+          </label>
           <button class="submit" type="submit">등록</button>
         </form>
 
@@ -405,7 +427,7 @@
           </div>
         </div>
         {% endif %}
-        
+
         <!-- 댓글 수정/삭제 모달 -->
         <div class="post-modal comment-option-modal hidden">
           <div class="post-modal-box">
