@@ -18,7 +18,7 @@
 | 분야 | 기술 |
 |------|------|
 | 📋 Planning & Design | Notion, Figma |
-| 💻 Frontend | React, HTML5, CSS3, JavaScript |
+| 💻 Frontend | HTML5, CSS3, JavaScript |
 | ⚙️ Backend | Python 3.13, Django 6.0 |
 | 🗄️ Database | SQLite3 |
 | 🤝 Collaboration | Git, GitHub |
