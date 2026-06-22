@@ -156,3 +156,20 @@
 .footer-attach input {
   display: none;
 }
+
+.essential {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+
+  color: #a5a3a3;
+  font-size: 12px;
+  font-weight: 300;
+
+  padding: 4px;
+}
+
+.t1 {
+  color: #ff9a9a;
+}
