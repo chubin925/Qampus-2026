@@ -1,0 +1,46 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}Qampus{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+    {% block extra_css %}{% endblock %}
+
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="head-left">
+          {% block header_left %}{% endblock %}
+          
+        </div>
+        <h1>
+          {% block header_title %}질의 응답{% endblock %}
+        </h1>
+
+        <div class="head-right">
+          {% block header_right %}{% endblock %}
+          </button>
+        </div>
+      </header>
+
+      <nav>
+      {% block navigation %}
+      {% endblock %}
+      </nav>
+      
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+
+      {% block modal%}{% endblock %}
+    </div>
+
+    {% block script %}{% endblock %}
+  </body>
+</html>
