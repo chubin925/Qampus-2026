@@ -100,7 +100,7 @@ body {
   scrollbar-width: none;
 }
 
-@media (min-width: 430px) {
+@media (min-width: 390px) {
   .app {
     max-width: 390px;
     margin: 0 auto;
