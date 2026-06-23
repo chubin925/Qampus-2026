@@ -29,7 +29,9 @@
   right: 30px;
   text-decoration: none;
 
-  z-index: 9999;
+  z-index: 100;
+
+  cursor: pointer;
 }
 
 .popupPostBtn > p {
