@@ -8,8 +8,6 @@
   padding-bottom: 80px;
 }
 
-
-
 .header {
   position: relative;
   display: flex;
@@ -69,7 +67,7 @@
 }
 
 .user-time {
-  color: #7b7b7b;
+  color: var(--text-primary);
   font-size: 12px;
   font-weight: 400;
 }
@@ -102,9 +100,9 @@
 .category-item {
   padding: 4px 8px;
   border-radius: 999px;
-  background: #f2f5fa;
+  background: var(--modal-default-bg);
 
-  color: #2173f1;
+  color: var(--color-primary);
   font-size: 12px;
   font-weight: 400;
 }
@@ -192,7 +190,7 @@ button.scrap-box {
 }
 
 .comment-count {
-  color: #000;
+  color: var(--text-main);
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -262,7 +260,7 @@ button.scrap-box {
 .comment-etc {
   width: 100%;
 
-  color: #7b7b7b;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -277,7 +275,7 @@ button.scrap-box {
   padding: 0;
   margin: 0;
 
-  color: #7b7b7b;
+  color: var(--text-primary);
   font-size: 11px;
   font-weight: 300;
   font-family: inherit;
@@ -285,7 +283,7 @@ button.scrap-box {
 }
 
 .reply-button:hover {
-  color: #2173f1;
+  color: var(--modal-active-bg);
 }
 
 .comment-like-form {
@@ -358,7 +356,7 @@ button.comment-like-box {
 }
 
 .input-comment::placeholder {
-  color: #7b7b7b;
+  color: var(--text-placeholder);
   font-size: 16px;
   font-weight: 400;
 }
@@ -367,9 +365,9 @@ button.comment-like-box {
 .submit {
   border: none;
   border-radius: 0px 6px 6px 0px;
-  background: #2173f1;
+  background: var(--color-primary);
 
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
   font-weight: 300;
   padding: 15px;
@@ -427,12 +425,12 @@ button.comment-like-box {
   width: 100%;
   height: 50%;
   padding: 10px 15px;
-  border: 1px solid #d9d9d9;
-  background: #f6f8ff;
+  border: 1px solid var(--modal-border);
+  background: var(--modal-default-bg);
 
   font-size: 14px;
   font-weight: 400;
-  color: #000;
+  color: var(--text-main);
   font-family: inherit;
   box-sizing: border-box;
   text-decoration: none;
@@ -469,8 +467,8 @@ button.comment-like-box {
 /* hover 중 버튼 스타일 */
 .edit-button:hover,
 .delete-button:hover {
-  color: #fff;
-  background: #2173f1;
+  color: var(--btn-hover-text);
+  background: var(--btn-hover-bg);
 }
 
 /* hover 중에는 기본 아이콘 숨김 */
@@ -514,10 +512,10 @@ button.comment-like-box {
   justify-content: center;
   align-items: center;
 
-  color: #000;
+  color: var(--text-main);
   font-size: 17px;
   font-weight: 400;
-  border-bottom: 1px solid #d6d6d6;
+  border-bottom: 1px solid var(--guide-line);
 }
 
 .delete-confirm-btn-box {
@@ -531,13 +529,13 @@ button.comment-like-box {
   border: none;
   background: #f8f9ff;
 
-  color: #006ffd;
+  color: var(--color-primary);
   font-size: 17px;
   font-weight: 400;
 }
 
 .btn-yes {
-  border-right: 1px solid #d6d6d6;
+  border-right: 1px solid var(--guide-line);
 }
 
 /* 댓글 수정/삭제 모달 */
@@ -596,10 +594,10 @@ button.comment-like-box {
 .reply-delete-form button {
   border: none;
   border-radius: 6px;
-  background: #2173f1;
+  background: var(--btn-default-bg);
   padding: 8px 10px;
 
-  color: #fff;
+  color: var(--color-white);
   font-size: 12px;
   font-weight: 400;
   font-family: inherit;
@@ -654,7 +652,7 @@ button.comment-like-box {
 }
 
 .comment-like-box.active .comment-like-count {
-  color: #2173f1;
+  color:  var(--text-active);
 }
 
 /* 가장 아래에 */

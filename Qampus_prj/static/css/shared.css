@@ -89,7 +89,7 @@ body {
   height: 100dvh;
   margin: 0 auto;
   position: relative;
-  background: #fff;
+  background: var(--bg-main);
 
   display: flex;
   flex-direction: column;
@@ -104,8 +104,8 @@ body {
   .app {
     max-width: 390px;
     margin: 0 auto;
-    border-left: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
+    border-left: 1px solid var(--guide-line);
+    border-right: 1px solid var(--guide-line);
   }
 }
 
@@ -116,7 +116,7 @@ body {
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid var(--guide-line);
   gap: 10px;
 
   flex-shrink: 0;
@@ -126,7 +126,7 @@ body {
   position: absolute;
   left: 52px;
   gap: 10px;
-  color: #000;
+  color: var(--text-main);
 
   font-size: 18px;
   font-weight: 500;

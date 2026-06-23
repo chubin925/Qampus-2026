@@ -23,6 +23,7 @@
   --text-primary: var(--gray-600);
   --text-placeholder: var(--gray-500);
   --text-disabled: var(--gray-600);
+  --text-active: var(--color-primary);
   --text-button-active: var(--gray-800);
   --text-button-disabled: var(--gray-500);
   --text-button-hover: var(--color-white);
@@ -32,6 +33,8 @@
   --btn-active-text: var(--gray-800);
   --btn-disabled-text: var(--gray-500);
   --btn-hover-text: var(--color-white);
+  --btn-default-bg: var(--color-primary);
+  --btn-hover-bg: var(--color-primary);
 
   /* border */
   --border-default: var(--gray-300);
