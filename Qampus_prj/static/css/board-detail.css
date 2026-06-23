@@ -336,19 +336,28 @@ button.comment-like-box {
   box-sizing: border-box;
 }
 
-.input-comment {
+.input-comment,
+.reply-form input {
   flex: 1;
   min-width: 0;
 
   border: none;
   outline: none;
   border-radius: 6px 0px 0px 6px;
-  background: #f2f5fa;
+  background-color: var(--gray-100);
   padding: 15px;
 
   box-sizing: border-box;
 }
 
+.input-comment,
+.reply-form input {
+  border-radius: 6px 0px 0px 6px;
+}
+
+.reply-form button {
+  border-radius: 0px 6px 6px 0px;
+}
 .input-comment::placeholder {
   color: var(--text-placeholder);
   font-size: 16px;
@@ -562,7 +571,6 @@ button.comment-like-box {
 
 .reply-form {
   display: flex;
-  gap: 6px;
   margin-top: 8px;
 }
 
@@ -574,11 +582,14 @@ button.comment-like-box {
 
   border: none;
   outline: none;
-  border-radius: 6px;
-  background: #f2f5fa;
+
+  color: var(--text-primary);
+  background-color: var(--gray-100);
   padding: 10px;
 
   font-size: 13px;
+
+  margin: 0px;
 }
 
 .reply-form button,
@@ -587,7 +598,6 @@ button.comment-like-box {
 .reply-edit-form button,
 .reply-delete-form button {
   border: none;
-  border-radius: 6px;
   background: var(--btn-default-bg);
   padding: 8px 10px;
 
@@ -649,7 +659,29 @@ button.comment-like-box {
   color: var(--text-active);
 }
 
-/* 가장 아래에 */
+.anonymous-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-primary);
+  background-color: var(--gray-100);
+  font-size: 13px;
+
+  cursor: pointer;
+
+  padding: 10px;
+  gap: 3px;
+}
+
+.is-anonymous {
+  width: 10px;
+  height: 10px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/*가장 아래에 */
 .hidden {
   display: none !important;
 }
