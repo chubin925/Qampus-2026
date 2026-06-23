@@ -52,29 +52,33 @@
       required
     ></textarea>
 
-    <!--작성 가이드-->
+
+    
     <section class="write-guide">
 
+
+    <!--카테고리 선택-->
       <div class="essential">
-        <p class="t1">※</p><p class="t2">필수</p>
-      </div>
-    
+        <div class="essential-text">
+          <p class="t1">※</p><p class="t2">필수</p>
+        </div>
 
-      <ul class="select-category">
-        {% for category in categories %}
-          <li data-id="{{ category.id }}">{{ category.name }}</li>
-        {% endfor %}
-      </ul>
+        <ul class="select-category">
+          {% for category in categories %}
+            <li data-id="{{ category.id }}">{{ category.name }}</li>
+          {% endfor %}
+        </ul>
 
-      <select name="category" id="categorySelect" multiple style="display: none;">
-        {% for category in categories %}
-        <option value="{{ category.id }}">
-          {{ category.name }}
-        </option>
-        {% endfor %}
-      </select>
-          
+        <select name="category" id="categorySelect" multiple style="display: none;">
+          {% for category in categories %}
+          <option value="{{ category.id }}">
+            {{ category.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>    
 
+      <!--작성 가이드-->
       <p class="text-guide">
         ※ 질문 내용 관련 유의사항
         <p class="text-guide">

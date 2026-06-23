@@ -163,6 +163,13 @@
 
 .essential {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.essential-text {
+  display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 4px;
@@ -173,7 +180,6 @@
 
   padding: 4px;
 }
-
 .t1 {
   color: #ff9a9a;
 }
