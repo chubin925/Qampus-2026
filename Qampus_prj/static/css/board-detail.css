@@ -3,6 +3,11 @@
   padding-bottom: 80px;
 }
 
+main * {
+  margin: 0px;
+  padding: 0px;
+}
+
 .header > a:first-child {
   left: 20px;
 
@@ -64,7 +69,7 @@
 .content-detail {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0px 10px;
   gap: 15px;
 }
 
