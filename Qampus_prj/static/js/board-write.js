@@ -4,6 +4,7 @@ const categorySelect = document.querySelector("#categorySelect");
 
 // form
 const form = document.querySelector("#createForm");
+const submitButton = document.querySelector(".post-ok-btn");
 
 // 제목, 내용
 const titleInput = document.querySelector(".form-title");
@@ -12,6 +13,25 @@ const contentInput = document.querySelector(".form-content");
 // 카테고리 select 초기화
 if (categorySelect) {
   categorySelect.value = "";
+}
+
+//입력값 검사
+
+function checkFormState() {
+  const titleValue = titleInput.value.trim();
+  const contentValue = contentInput.value.trim();
+  const categoryValue = categorySelect.value;
+
+  const isValid =
+    titleValue !== "" && contentValue !== "" && categoryValue !== "";
+
+  if (isValid) {
+    submitButton.disabled = false;
+    submitButton.classList.add("active");
+  } else {
+    submitButton.disabled = true;
+    submitButton.classList.remove("active");
+  }
 }
 
 // 카테고리 클릭
@@ -26,6 +46,8 @@ categoryItems.forEach((item) => {
     if (categorySelect) {
       categorySelect.value = item.dataset.id;
     }
+
+    checkFormState();
   });
 });
 
@@ -57,3 +79,6 @@ if (form) {
     }
   });
 }
+
+titleInput.addEventListener("input", checkFormState);
+contentInput.addEventListener("input", checkFormState);

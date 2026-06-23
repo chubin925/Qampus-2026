@@ -9,39 +9,10 @@
   justify-content: space-between;
 }
 
-.head-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.head-left-img {
-  width: 28px;
-  height: 28px;
-  margin-right: 14px;
-}
-
-.header h1 {
-  color: #000;
-  margin-left: 14px;
-}
-
 .head-right {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.head-right-img1,
-.head-right-img2 {
-  width: 24px;
-  height: 24px;
-}
-
-.head-right > button {
-  margin-left: 18px;
-  background-color: transparent;
-  border: none;
 }
 
 .popupPostBtn {
@@ -51,18 +22,17 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 180px;
-  height: 37px;
-  padding: 10px 21px;
+  width: 170px;
+  height: 38px;
+  padding: 10px 15px;
 
   border-radius: 10px;
   border: 1px solid #d9d9d9;
   background-color: #f2f5fa;
 
   position: absolute;
-
-  margin-left: 200px;
-  top: 45px;
+  top: 50px;
+  right: 30px;
   text-decoration: none;
 
   z-index: 9999;
@@ -117,8 +87,6 @@
 }
 
 .selected_line {
-  position: absolute;
-
   margin-left: 23px;
   top: 108px;
   width: 44px;
@@ -320,6 +288,8 @@
   align-items: center;
 
   gap: 16px;
+
+  font-variant-numeric: tabular-nums;
 }
 
 .numOfHeart,
@@ -333,7 +303,7 @@
 }
 
 .postBtn {
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);

@@ -1,42 +1,40 @@
+{% extends 'Qampus/base.html' %}
 {% load static %}
 
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+
+<title>{{ post.title }}</title>
+
+{% block extra_css %}  
     <link rel="stylesheet" href="{% static 'css/board-detail.css' %}" />
-    <title>{{ post.title }}</title>
-  </head>
+{% endblock %}
 
-  <body>
-    <!-- 모바일 전용 화면 -->
-    <div class="app">
-      <!-- 헤더 -->
-      <header class="header">
-        <a class="header-left" href="{% url 'Qampus:main' %}">
-          <img
-            class="head-left-img detail-back-button"
-            src="{% static 'icons/chevron-left.svg' %}"
-            alt="뒤로가기"
-          />
-        </a>
+{% block header_left %}
+    <a class="main-url" href="{% url 'Qampus:main' %}">
+    <img
+      class="head-left-img detail-back-button"
+      src="{% static 'icons/chevron-left.svg' %}"
+      alt="뒤로가기"
+    />
+    </a>
+{% endblock %}
 
-        <a href="{% url 'Qampus:main' %}">
-          <h1 class="qna">질의 응답</h1>
-        </a>
+{% block header_title %}
+<a href="{% url 'Qampus:main' %}">
+  질의 응답
+</a>
+{% endblock %}
 
-        <button class="header-right post-menu-button" type="button">
-          <img
-            class="head-right-img post-menu-icon"
-            src="{% static 'icons/ellipsis-vertical-b.svg' %}"
-            alt="게시글 메뉴"
-          />
-        </button>
-      </header>
+{% block header_right %}
+  <button class="header-right post-menu-button" type="button">
+    <img
+      class="head-right-img post-menu-icon"
+      src="{% static 'icons/ellipsis-vertical-b.svg' %}"
+      alt="게시글 메뉴"
+    />
+  </button>
+{% endblock %}
 
-      <main class="main">
+{% block content%}
         <!-- 질문한 내용 영역 -->
         <section class="section-content">
           <!-- 질문자 유저정보 -->
@@ -470,20 +468,22 @@
           {% csrf_token %}
         </form>
 
-        <!-- 삭제 확인 모달 -->
-        <div class="delete-confirm-overlay hidden">
-          <div class="delete-confirm-modal">
-            <p class="delete-confirm-text">삭제하시겠습니까?</p>
+    
+{% endblock %}
+<!-- 삭제 확인 모달 -->
+{% block modal%}
+  <div class="delete-confirm-overlay hidden">
+    <div class="delete-confirm-modal">
+      <p class="delete-confirm-text">삭제하시겠습니까?</p>
 
-            <div class="delete-confirm-btn-box">
-              <button class="btn-yes" type="button">예</button>
-              <button class="btn-no" type="button">아니요</button>
-            </div>
-          </div>
-        </div>
-      </main>
+      <div class="delete-confirm-btn-box">
+        <button class="btn-yes" type="button">예</button>
+        <button class="btn-no" type="button">아니요</button>
+      </div>
     </div>
-
+  </div>
+{% endblock %}
+    {% block script %}
     <script src="{% static 'js/board-detail.js' %}"></script>
-  </body>
-</html>
+    {% endblock %}
+

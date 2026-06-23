@@ -1,175 +1,148 @@
+{% extends 'Qampus/base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Qampus</title>
-    <link rel="stylesheet" href="{% static 'css/shared.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/board-list.css' %}" />
-  </head>
-  <body>
-    {% load humanize %}
-    <!--모바일 전용 화면-->
-    <div class="app">
-      <header class="header">
-        <div class="head-left">
-          <img
-            class="head-left-img"
-            src="{% static 'icons/ChatsCircle.svg' %}"
-            alt="헤더채팅아이콘"
-          />
-          <h1>질의 응답</h1>
+
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/shared.css' %}">
+  <link rel="stylesheet" href="{% static 'css/board-list.css' %}" />
+{% endblock %}
+
+{% load humanize %}
+
+{% block header_left %}
+  <img
+    class="head-left-img"
+    src="{% static 'icons/ChatsCircle.svg' %}"
+    alt="헤더채팅아이콘"
+  />
+{% endblock %}
+
+{% block header_title %}
+  <a href="{% url 'Qampus:main' %}">
+  질의 응답
+  </a>
+{% endblock %}
+
+{% block header_right %}
+  <button type="button">
+    <img
+      class="head-right-img"
+      src="{% static 'icons/ellipsis-vertical-b.svg' %}"
+      alt="헤더점세개아이콘"
+    />
+  </button>
+{% endblock %}
+
+{% block navigation %}
+  <div class="popupPostBtn">
+    <p>질문 올리기</p>
+    <img src="{% static 'icons/pencil-b.svg' %}" />
+  </div>
+
+  <div class="navigation">
+    <div class="selected_category">전체</div>
+    <div class="category">수업</div>
+    <div class="category">학교 프로그램</div>
+    <div class="category">행정 / 절차</div>
+  </div>
+
+  <div class="selected_line"></div>
+{% endblock %}
+
+{% block content%}
+<button id="howtolist" type="button">
+  <p>
+    {% if selected_sort == 'latest' %} 최신순 {% else %} 추천순
+    {%endif%}
+  </p>
+  <img src="{% static 'icons/downvector.svg' %}" alt="아래방향화살표" />
+</button>
+
+<div class="howtolistPopup">
+  <form method="GET" action="{% url 'Qampus:main' %}">
+    <input
+      type="hidden"
+      name="category_slug"
+      value="{{ selected_slug }}"
+    />
+
+    <button
+      class="{% if selected_sort == 'popular' %}recommend active{% else %}recommend{% endif %}"
+      type="submit"
+      name="sort"
+      value="popular"
+    >
+      추천순
+    </button>
+  </form>
+
+  <form method="GET" action="{% url 'Qampus:main' %}">
+    <input
+      type="hidden"
+      name="category_slug"
+      value="{{ selected_slug }}"
+    />
+
+    <button
+      class="{% if selected_sort == 'latest' %}recent active{% else %}recent{% endif %}"
+      type="submit"
+      name="sort"
+      value="latest"
+    >
+      최신순
+    </button>
+  </form>
+</div>
+
+{% for post in posts %}
+<a href="{% url 'Qampus:detail' post.id %}" class="bigBoxForpost">
+  <div class="post">
+    <p class="postTitle">{{ post.title }}</p>
+    <p class="postContent">{{ post.content }}</p>
+    <div class="postFooter">
+      <div class="postInfo">
+        <div>{{ post.created_at|naturaltime }}</div>
+      </div>
+
+      <div class="postReaction">
+        <div class="heart">
+          <img src="{% static 'icons/heart-blue.svg' %}" alt="빈하트" />
+          <p class="numOfHeart">{{ post.like_count }}</p>
         </div>
 
-        <div class="head-right">
-          <img
-            class="head-right-img1"
-            src="{% static 'icons/test.png' %}"
-            alt="헤더돋보기아이콘"
-          />
-          <button type="button">
-            <img
-              class="head-right-img2"
-              src="{% static 'icons/ellipsis-vertical-b.svg' %}"
-              alt="헤더점세개아이콘"
-            />
-          </button>
+        <div class="comment">
+          <img src="{% static 'icons/comment.svg' %}" alt="댓글" />
+          <div class="numOfComment">{{ post.total_comment_count }}</div>
         </div>
-      </header>
-
-      <a href="{% url 'Qampus:create' %}" class="popupPostBtn">
-        <p>질문 올리기</p>
-        <img src="{% static 'icons/pencil-b.svg' %}" alt="질문 올리기" />
-      </a>
-
-      <form action="{% url 'Qampus:main' %}" method="GET" class="navigation">
-        <button
-          type="submit"
-          name="category_slug"
-          value=""
-          class="{% if not selected_slug %}selected_category{% else %}category{% endif %}"
-        >
-          전체
-        </button>
-        <button
-          type="submit"
-          name="category_slug"
-          value="class"
-          class="{% if selected_slug == 'class' %}selected_category{% else %}category{% endif %}"
-        >
-          수업
-        </button>
-        <button
-          type="submit"
-          name="category_slug"
-          value="program"
-          class="{% if selected_slug == 'program' %}selected_category{% else %}category{% endif %}"
-        >
-          학교 프로그램
-        </button>
-        <button
-          type="submit"
-          name="category_slug"
-          value="procedure"
-          class="{% if selected_slug == 'procedure' %}selected_category{% else %}category{% endif %}"
-        >
-          행정·절차
-        </button>
-      </form>
-
-      <div class="selected_line"></div>
-
-      <main class="main">
-        <button id="howtolist" type="button">
-          <p>
-            {% if selected_sort == 'latest' %} 최신순 {% else %} 추천순
-            {%endif%}
-          </p>
-          <img src="{% static 'icons/downvector.svg' %}" alt="아래방향화살표" />
-        </button>
-
-        <div class="howtolistPopup">
-          <form method="GET" action="{% url 'Qampus:main' %}">
-            <input
-              type="hidden"
-              name="category_slug"
-              value="{{ selected_slug }}"
-            />
-
-            <button
-              class="{% if selected_sort == 'popular' %}recommend active{% else %}recommend{% endif %}"
-              type="submit"
-              name="sort"
-              value="popular"
-            >
-              추천순
-            </button>
-          </form>
-
-          <form method="GET" action="{% url 'Qampus:main' %}">
-            <input
-              type="hidden"
-              name="category_slug"
-              value="{{ selected_slug }}"
-            />
-
-            <button
-              class="{% if selected_sort == 'latest' %}recent active{% else %}recent{% endif %}"
-              type="submit"
-              name="sort"
-              value="latest"
-            >
-              최신순
-            </button>
-          </form>
-        </div>
-
-        {% for post in posts %}
-        <a href="{% url 'Qampus:detail' post.id %}" class="bigBoxForpost">
-          <div class="post">
-            <p class="postTitle">{{ post.title }}</p>
-            <p class="postContent">{{ post.content }}</p>
-            <div class="postFooter">
-              <div class="postInfo">
-                <div>{{ post.created_at|naturaltime }}</div>
-              </div>
-
-              <div class="postReaction">
-                <div class="heart">
-                  <img src="{% static 'icons/heart-blue.svg' %}" alt="빈하트" />
-                  <p class="numOfHeart">{{ post.like_count }}</p>
-                </div>
-
-                <div class="comment">
-                  <img src="{% static 'icons/comment.svg' %}" alt="댓글" />
-                  <div class="numOfComment">{{ post.total_comment_count }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        {% empty %}
-        <div class="none-post-notice">
-          <p>아직 작성된 질문이 없어요.</p>
-          {% if selected_slug == 'class' %}
-          <p>수업에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
-          {% elif selected_slug == 'program' %}
-          <p>학교 프로그램에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
-          {% elif selected_slug == 'procedure' %}
-          <p>행정/절차에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
-          {% else %}
-          <p>학교 생활 중 궁금한 건<br />무엇이든 질문하세요!</p>
-          {% endif %}
-        </div>
-        {% endfor %}
-      </main>
-
-      <a href="{% url 'Qampus:create' %}" class="postBtn">
-        <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기" />
-        <p class="uploadQuestion">질문 올리기</p>
-      </a>
+      </div>
     </div>
+  </div>
+</a>
+{% empty %}
+<div class="none-post-notice">
+  <p>아직 작성된 질문이 없어요.</p>
+  {% if selected_slug == 'class' %}
+  <p>수업에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+  {% elif selected_slug == 'program' %}
+  <p>학교 프로그램에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+  {% elif selected_slug == 'procedure' %}
+  <p>행정/절차에 대해 궁금한 건<br />무엇이든 질문하세요!</p>
+  {% else %}
+  <p>학교 생활 중 궁금한 건<br />무엇이든 질문하세요!</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block modal %}
+  <a href="{% url 'Qampus:create' %}" class="postBtn">
+    <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기" />
+    <p class="uploadQuestion">질문 올리기</p>
+  </a>
+{% endblock %}
+
+    {% block script %}
     <script src="{% static 'js/board-list.js' %}"></script>
+    {% endblock %}
   </body>
 </html>

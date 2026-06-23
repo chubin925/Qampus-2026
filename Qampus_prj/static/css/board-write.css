@@ -6,10 +6,6 @@
 }
 
 .post-ok-btn {
-  display: flex;
-  position: absolute;
-  right: 20px;
-
   border: none;
   background: none;
 
@@ -19,11 +15,11 @@
 
   line-height: 1;
 
-  cursor: pointer;
+  cursor: default;
+}
 
-  justify-content: flex-end;
-
-  margin-right: 10px;
+.post-ok-btn.active {
+  color: #444;
 }
 
 .box {
@@ -32,10 +28,8 @@
 }
 
 .header {
-  border-bottom: none;
-  align-items: center;
+  border-bottom: 1px solid #fff;
 }
-
 .form-title {
   width: 100%;
   padding: 20px 30px;
@@ -102,7 +96,7 @@
 }
 
 .select-category li {
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid #d9d9d9;
   padding: 4px 10px;
   cursor: pointer;
@@ -137,10 +131,14 @@
 }
 
 .footer-attach {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+
   width: 100%;
+  max-width: 388px;
   height: 62px;
 
-  position: absolute;
   bottom: 0;
   padding: 20px 30px;
   border-top: #d9d9d9 1px solid;
@@ -163,11 +161,19 @@
   display: none;
 }
 
-.header h1 {
-  position: absolute;
-  top: 20px !important;
+.essential {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
 
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
+  color: #a5a3a3;
+  font-size: 12px;
+  font-weight: 300;
+
+  padding: 4px;
+}
+
+.t1 {
+  color: #ff9a9a;
 }
