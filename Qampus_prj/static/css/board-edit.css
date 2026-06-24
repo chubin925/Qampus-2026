@@ -34,3 +34,21 @@
   font-weight: 500;
   line-height: 1;
 }
+
+.footer-attach {
+  display: flex;
+  justify-content: space-between;
+}
+
+.anonymous-label {
+  color: var(--text-primary);
+  font-size: 13px;
+
+  cursor: pointer;
+}
+.is-anonymous {
+  width: 10px;
+  height: 10px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}

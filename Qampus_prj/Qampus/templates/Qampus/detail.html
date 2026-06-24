@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block header_right %}
-  <button class="header-right post-menu-button" type="button">
+  <button type="button" class="post-menu-button">
     <img
       class="head-right-img post-menu-icon"
       src="{% static 'icons/ellipsis-vertical-b.svg' %}"
@@ -204,11 +204,11 @@
               <div class="comment-content">
                 <p class="comment-content-text">{{ comment.content }}</p>
 
-                <!-- 댓글 작성 시간, 답글, 좋아요 -->
+                <!-- 댓글 작성 시간, 답변, 좋아요 -->
                 <div class="comment-etc">
                   <p>{{ comment.created_at|date:"y/m/d" }}</p>
 
-                  <button class="reply-button" type="button">답글</button>
+                  <button class="reply-button" type="button">답변</button>
 
                   <form
                     class="comment-like-form"
@@ -244,10 +244,11 @@
                   <input
                     type="text"
                     name="content"
+                    class="radius-left"
                     value="{{ comment.content }}"
                     required
                   />
-                  <button type="submit">댓글 수정</button>
+                  <button type="submit" class="radius-right">수정</button>
                 </form>
 
                 <!-- 댓글 삭제 -->
@@ -270,12 +271,12 @@
                   <input
                     type="text"
                     name="content"
-                    placeholder="답글을 입력하세요"
+                    placeholder="답변을 입력하세요"
                     required
                   />
-                  <label>
-                    <input type="checkbox" name="is_anonymous" /> 익명
-                  </label>
+                <label class="anonymous-label">
+                  <input type="checkbox" name="is_anonymous" class="is-anonymous" />익명
+                </label>
                   <button type="submit">등록</button>
                 </form>
               </div>
@@ -304,7 +305,7 @@
                   <img
                     class="comment-ellipsis-img"
                     src="{% static 'icons/ellipsis-vertical-g.svg' %}"
-                    alt="답글 메뉴"
+                    alt="답변 메뉴"
                   />
                 </button>
               </div>
@@ -330,7 +331,7 @@
                       <img
                         class="comment-like-img"
                         src="{% static 'icons/heart-black.svg' %}"
-                        alt="답글 좋아요"
+                        alt="답변 좋아요"
                       />
                       <span class="comment-like-count"
                         >{{ reply.like_count }}</span
@@ -350,9 +351,10 @@
                     type="text"
                     name="content"
                     value="{{ reply.content }}"
+                    class="comment-edit-form"
                     required
                   />
-                  <button type="submit">답글 수정</button>
+                  <button type="submit">수정</button>
                 </form>
 
                 <!-- 대댓글 삭제 -->
@@ -362,7 +364,7 @@
                   action="{% url 'Qampus:delete_reply' reply.id %}"
                 >
                   {% csrf_token %}
-                  <button type="submit">답글 삭제</button>
+                  <button type="submit">답변 삭제</button>
                 </form>
               </div>
             </div>
@@ -385,8 +387,8 @@
             placeholder="답변을 입력해보세요"
             required
           />
-          <label>
-            <input type="checkbox" name="is_anonymous" /> 익명
+          <label class="anonymous-label">
+            <input type="checkbox" name="is_anonymous" class="is-anonymous"/>익명
           </label>
           <button class="submit" type="submit">등록</button>
         </form>

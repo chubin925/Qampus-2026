@@ -6,13 +6,7 @@
 }
 
 .header {
-  justify-content: space-between;
-}
-
-.head-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  border-bottom: 1px solid var(--color-white);
 }
 
 .popupPostBtn {
@@ -27,19 +21,21 @@
   padding: 10px 15px;
 
   border-radius: 10px;
-  border: 1px solid #d9d9d9;
-  background-color: #f2f5fa;
+  border: 1px solid var(--border-default);
+  background-color: var(--modal-default-bg);
 
   position: absolute;
   top: 50px;
   right: 30px;
   text-decoration: none;
 
-  z-index: 9999;
+  z-index: 100;
+
+  cursor: pointer;
 }
 
 .popupPostBtn > p {
-  color: #000;
+  color: var(--text-main);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -60,8 +56,8 @@
   padding-bottom: 10px;
   justify-content: space-evenly;
 
-  height: 53px;
-  border-bottom: 1px solid #d9d9d9;
+  height: 40px;
+  border-bottom: 1px solid var(--guide-line);
 }
 
 .navigation button {
@@ -71,7 +67,7 @@
 }
 
 .selected_category {
-  color: #000;
+  color: var(--text-main);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -79,7 +75,7 @@
 }
 
 .category {
-  color: #7b7b7b;
+  color: var(--text-disabled);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -92,7 +88,7 @@
   width: 44px;
   height: 2px;
 
-  background-color: #2173f1;
+  background-color: var(--color-primary);
 }
 
 #howtolist {
@@ -110,12 +106,12 @@
   margin-top: 20px;
 
   border-radius: 20px;
-  border: 1px solid #d9d9d9;
-  background-color: #f2f5fa;
+  border: 1px solid var(--modal-border);
+  background-color: var(--modal-default-bg);
 }
 
 #howtolist > p {
-  color: #000;
+  color: var(--text-main);
   font-size: 12px;
 }
 
@@ -136,8 +132,8 @@
   height: 54px;
 
   border-radius: 10px;
-  border: 1px solid #d9d9d9;
-  background: #f2f5fa;
+  border: 1px solid var(--modal-border);
+  background: var(--modal-default-bg);
 
   margin-left: 20px;
   margin-top: 1px;
@@ -154,8 +150,8 @@
   border-radius: 0 0 10px 10px;
   height: 26px;
 
-  color: #000;
-  background-color: #f2f5fa;
+  color: var(--text-main);
+  background-color: var(--modal-default-bg);
   border: none;
 }
 
@@ -170,14 +166,14 @@
   border-radius: 10px 10px 0 0;
   height: 26px;
 
-  color: #000;
-  background-color: #f2f5fa;
+  color: var(--text-main);
+  background-color: var(--modal-default-bg);
   border: none;
 }
 
 .active {
-  background-color: #2173f1;
-  color: #ffffff;
+  background-color: var(--modal-active-bg);
+  color: var(--text-button-hover);
 }
 
 .none-post-notice {
@@ -191,7 +187,7 @@
 
   text-align: center;
 
-  color: #7b7b7b;
+  color: var(--text-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -207,22 +203,21 @@
 
   width: 388px;
   min-height: 114px;
-  /* padding-bottom: 20px; */
   padding: 20px 20px 20px 20px;
+
+  border-bottom: 1px solid var(--guide-line);
 }
 
 .bigBoxForpost {
   display: block;
   width: 100%;
-  border-bottom: 1px solid #d9d9d9;
   text-decoration: none;
-  color: inherit;
 }
 
 .postTitle {
   margin: 0px;
 
-  color: #000;
+  color: var(--text-main);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -237,7 +232,7 @@
   margin-top: 12px;
   margin-bottom: 10px;
 
-  color: #000;
+  color: var(--text-main);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -249,7 +244,7 @@
 }
 
 .postInfo {
-  color: #7b7b7b;
+  color: var(--text-disabled);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -266,7 +261,7 @@
 
 .heart > div,
 .comment > div {
-  color: #7b7b7b;
+  color: var(--gray-600);
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -294,7 +289,7 @@
 
 .numOfHeart,
 .numOfComment {
-  color: #7b7b7b;
+  color: var(--gray-600);
 
   font-size: 12px;
   font-style: normal;
@@ -313,7 +308,7 @@
   padding: 12px 40px;
 
   border-radius: 6px;
-  background-color: #2173f1;
+  background-color: var(--color-primary);
 
   display: flex;
   flex-direction: row;
@@ -331,7 +326,7 @@
 }
 
 .postBtn > p {
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
