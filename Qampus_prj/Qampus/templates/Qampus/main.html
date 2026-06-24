@@ -49,7 +49,7 @@
 
   {% endcomment %}
 
-<form action="{% url 'Qampus:main' %}" method="POST" class="navigation">
+<form action="{% url 'Qampus:main' %}" method="GET" class="navigation">
     {% csrf_token %}
     <button
       type="submit"
