@@ -1,7 +1,12 @@
-{% extends 'Qampus/base.html' %} {% load static %} {% block extra_css %}
+{% extends 'Qampus/base.html' %} 
+{% load static %} 
+
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/board-detail.css' %}" />
 <link rel="stylesheet" href="{% static 'css/board-write.css' %}" />
-{% endblock %} {% block header_left %}
+{% endblock %} 
+
+{% block header_left %}
 <a href="{% url 'Qampus:main' %}">
   <img
     class="head-left-img post-cancel-icon"

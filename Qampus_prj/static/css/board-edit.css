@@ -27,14 +27,6 @@
   white-space: nowrap;
 }
 
-.header h1 {
-  position: absolute;
-  top: 9px !important;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
-}
-
 .footer-attach {
   display: flex;
   justify-content: space-between;

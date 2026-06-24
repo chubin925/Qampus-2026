@@ -8,16 +8,16 @@
 {% endblock %} 
 
 {% block header_left %}
-<img
-  class="head-left-img post-cancel-icon"
-  src="{% static 'icons/cancel.svg' %}"
-  alt="닫기"
-/>
+  <a href="{% url 'Qampus:detail' post.id %}">
+    <img
+      class="head-left-img post-cancel-icon"
+      src="{% static 'icons/cancel.svg' %}"
+      alt="닫기"
+    />
+  </a>
 {% endblock %} 
 
-{% block header_title %}
-<h1>질문 수정</h1>
-{% endblock %} 
+{% block header_title %}질문 수정{% endblock %} 
 
 {% block header_right %}
 <button
