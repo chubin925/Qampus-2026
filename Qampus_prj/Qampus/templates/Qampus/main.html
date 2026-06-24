@@ -31,22 +31,61 @@
       alt="헤더점세개아이콘"
     />
   </button>
-{% endblock %}
 
-{% block navigation %}
   <a href="{% url 'Qampus:create' %}" class="popupPostBtn">
     <p>질문 올리기</p>
     <img src="{% static 'icons/pencil-b.svg' %}" />
   </a>
 
-  <div class="navigation">
+{% endblock %}
+
+{% block navigation %}
+  {% comment %} <div class="navigation">
     <div class="selected_category">전체</div>
     <div class="category">수업</div>
     <div class="category">학교 프로그램</div>
     <div class="category">행정 / 절차</div>
   </div>
 
-  <div class="selected_line"></div>
+  {% endcomment %}
+
+<form action="{% url 'Qampus:main' %}" method="POST" class="navigation">
+    {% csrf_token %}
+    <button
+      type="submit"
+      name="category_slug"
+      value=""
+      class="{% if not selected_slug %}selected_category{% else %}category{% endif %}"
+    >
+      전체
+    </button>
+    <button
+      type="submit"
+      name="category_slug"
+      value="class"
+      class="{% if selected_slug == 'class' %}selected_category{% else %}category{% endif %}"
+    >
+      수업
+    </button>
+    <button
+      type="submit"
+      name="category_slug"
+      value="program"
+      class="{% if selected_slug == 'program' %}selected_category{% else %}category{% endif %}"
+    >
+      학교 프로그램
+    </button>
+    <button
+      type="submit"
+      name="category_slug"
+      value="procedure"
+      class="{% if selected_slug == 'procedure' %}selected_category{% else %}category{% endif %}"
+    >
+      행정·절차
+    </button>
+  </form>
+  <div class="selected_line"></div> 
+
 {% endblock %}
 
 {% block content%}
@@ -138,6 +177,10 @@
   <a href="{% url 'Qampus:create' %}" class="postBtn">
     <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기" />
     <p class="uploadQuestion">질문 올리기</p>
+  </a>
+
+  <a href="{% url 'Qampus:create' %}" class="floatingPost">
+    <img src="{% static 'icons/pencil-w.svg' %}" alt="질문 올리기" />
   </a>
 {% endblock %}
 
