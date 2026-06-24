@@ -172,6 +172,11 @@ button.scrap-box {
   display: none;
 }
 
+.like-box.active .like-img-fill,
+.scrap-box.active .scrap-img-fill {
+  display: block;
+}
+
 .scrap-default-text,
 .scrap-box.active .scrap-cancel-text {
   display: inline;
