@@ -14,6 +14,8 @@ def main(request):
     category_slug = request.GET.get('category_slug', '')
     selected_sort = request.GET.get('sort', 'latest')
 
+    print("category_slug:", category_slug)
+
     posts = Post.objects.annotate(
         total_comment_count=Count('comments', distinct=True) + Count('comments__replies', distinct=True)
     )    
