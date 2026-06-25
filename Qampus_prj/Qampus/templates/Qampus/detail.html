@@ -129,7 +129,7 @@
             >
               {% csrf_token %}
               <button
-                class="scrap-box"
+                class="scrap-box {% if post.id in request.session.scrapped_posts %}active{% endif %}"
                 type="submit"
                 data-post-id="{{ post.id }}"
               >
@@ -224,7 +224,7 @@
                     >
                       <img
                         class="comment-like-img"
-                        src="{% static 'icons/heart-black.svg' %}"
+                        src="{% if comment.id in request.session.liked_comments %}{% static 'icons/heart-blue-fill.svg' %}{% else %}{% static 'icons/heart-black.svg' %}{% endif %}"
                         alt="댓글 좋아요"
                       />
                       <span class="comment-like-count"
@@ -330,7 +330,7 @@
                     >
                       <img
                         class="comment-like-img"
-                        src="{% static 'icons/heart-black.svg' %}"
+                        src="{% if reply.id in request.session.liked_replies %}{% static 'icons/heart-blue-fill.svg' %}{% else %}{% static 'icons/heart-black.svg' %}{% endif %}"
                         alt="답변 좋아요"
                       />
                       <span class="comment-like-count"

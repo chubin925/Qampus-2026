@@ -326,7 +326,7 @@ def like_comment(request, comment_id):
         Comment.objects.filter(id=comment_id).update(like_count=F('like_count') + 1)
         liked_comments.append(comment_id)
 
-    comment.save()
+    
     request.session['liked_comments'] = liked_comments
 
     return redirect('Qampus:detail', comment.post.id)
@@ -345,7 +345,7 @@ def like_reply(request, reply_id):
         Reply.objects.filter(id=reply_id).update(like_count=F('like_count') + 1)
         liked_replies.append(reply_id)
 
-    reply.save()
+    
     request.session['liked_replies'] = liked_replies
     return redirect('Qampus:detail', reply.comment.post.id)
 
