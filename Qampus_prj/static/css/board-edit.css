@@ -33,14 +33,41 @@
 }
 
 .anonymous-label {
-  color: var(--text-primary);
-  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 15px;
   cursor: pointer;
 }
-.is-anonymous {
-  width: 10px;
-  height: 10px;
-  accent-color: var(--color-primary);
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 11px;
+  height: 11px;
+  margin: 0;
+
+  border: 1px solid var(--color-primary);
+  border-radius: 2px;
+  background-color: var(--color-white);
   cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  display: block;
+  color: white;
+  font-size: 9px;
+  line-height: 10px;
+  text-align: center;
 }
