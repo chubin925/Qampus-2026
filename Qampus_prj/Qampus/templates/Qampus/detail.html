@@ -87,7 +87,7 @@
             >
               {% csrf_token %}
               <button
-                class="like-box"
+                class="like-box {% if post.id in request.session.liked_posts %}active{% endif %}"
                 type="submit"
                 data-post-id="{{ post.id }}"
               >

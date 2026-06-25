@@ -163,6 +163,12 @@ button.scrap-box {
   flex-shrink: 0;
 }
 
+/* 버튼 활성화 시*/
+.like-box.active .like-img-fill,
+.scrap-box.active .scrap-img-fill {
+  display: block;
+}
+
 .like-img-fill,
 .scrap-img-fill,
 .like-box.active .like-img,
@@ -170,11 +176,6 @@ button.scrap-box {
 .scrap-cancel-text,
 .scrap-box.active .scrap-default-text {
   display: none;
-}
-
-.like-box.active .like-img-fill,
-.scrap-box.active .scrap-img-fill {
-  display: block;
 }
 
 .scrap-default-text,

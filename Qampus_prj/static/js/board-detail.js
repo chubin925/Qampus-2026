@@ -1,7 +1,8 @@
 //좋아요, 스크랩 버튼
 const likeBox = document.querySelector(".like-box");
+const likeEmpty = document.querySelector(".like-img");
+const likeFill = document.querySelector(".like-img-fill");
 const scrapBox = document.querySelector(".scrap-box");
-const likeNum = document.querySelector(".like-num");
 
 //댓글, 대댓글 좋아요 버튼
 const commentLikeBoxes = document.querySelectorAll(".comment-like-box");
@@ -28,34 +29,18 @@ const postDeleteForm = document.querySelector("#post-delete-form");
 let modalTarget = "post";
 let deleteTarget = null;
 
+
+
 //좋아요, 스크랩 localStorage key
 const postId = likeBox?.dataset.postId;
-const LIKE_STORAGE_KEY = `qampus-like-${postId}`;
 const SCRAP_STORAGE_KEY = `qampus-scrap-${postId}`;
 
-//좋아요 초기 상태 반영
-if (localStorage.getItem(LIKE_STORAGE_KEY) === "true") {
-  likeBox?.classList.add("active");
-}
 
 //스크랩 초기 상태 반영
 if (localStorage.getItem(SCRAP_STORAGE_KEY) === "true") {
   scrapBox?.classList.add("active");
 }
 
-//좋아요 클릭
-likeBox?.addEventListener("click", () => {
-  const isLiked = likeBox.classList.toggle("active");
-  const currentLikeCount = Number(likeNum.textContent.trim());
-
-  if (isLiked) {
-    likeNum.textContent = currentLikeCount + 1;
-    localStorage.setItem(LIKE_STORAGE_KEY, "true");
-  } else {
-    likeNum.textContent = Math.max(currentLikeCount - 1, 0);
-    localStorage.setItem(LIKE_STORAGE_KEY, "false");
-  }
-});
 
 //스크랩 클릭
 scrapBox?.addEventListener("click", () => {
@@ -128,17 +113,13 @@ const setCommentModalPosition = (targetButton) => {
 
   if (modalLeft < minLeft) {
     modalLeft = minLeft;
-  }
-
-  if (modalLeft > maxLeft) {
+  } else {
     modalLeft = maxLeft;
   }
 
   if (modalTop < minTop) {
     modalTop = minTop;
-  }
-
-  if (modalTop > maxTop) {
+  } else {
     modalTop = iconPosition.top - modalHeight - 6;
   }
 
