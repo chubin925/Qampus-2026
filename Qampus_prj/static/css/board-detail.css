@@ -550,12 +550,22 @@ button.comment-like-box {
   color: var(--color-primary);
   font-size: 17px;
   font-weight: 400;
+  height: 36px;
 }
 
 .btn-yes {
   border-right: 1px solid var(--guide-line);
-  height: 36px;
   overflow: hidden;
+  border-radius: 0px 0px 0px 10px;
+}
+
+.btn-no {
+  border-radius: 0px 0px 10px 0px;
+}
+.btn-yes:hover,
+.btn-no:hover {
+  background-color: var(--color-primary);
+  color: var(--btn-hover-text);
 }
 
 /* 댓글 수정/삭제 모달 */
