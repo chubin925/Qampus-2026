@@ -186,6 +186,7 @@ button.scrap-box {
   padding: 23px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 65px;
 }
 
 .comment-count {
