@@ -330,15 +330,16 @@ button.comment-like-box {
 /* 댓글 입력 영역 */
 .input-comment-box {
   position: fixed;
-  bottom: 20px;
+  bottom: 0;
   left: 0;
   right: 0;
 
   display: flex;
   height: 51px;
   width: 330px;
-  margin: 10px auto;
+  margin: 12px auto;
 
+  background-color: var(--bg-main);
   box-sizing: border-box;
 }
 
