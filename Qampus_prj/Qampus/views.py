@@ -91,7 +91,7 @@ def create(request, slug=None):
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
     categories = post.category.all()
-    comments = post.comments.all().order_by('-created_at').prefetch_related('replies')
+    comments = post.comments.all().order_by('created_at').prefetch_related('replies')
     comment_count = post.comments.count()
     reply_count = Reply.objects.filter(comment__post=post).count()
     total_comment_count = comment_count + reply_count
