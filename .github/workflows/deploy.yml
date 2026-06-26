@@ -28,7 +28,7 @@ jobs:
             git pull origin main
 
             # 2) 장고 앱 폴더에서 migrate
-            cd ${{ secrets.APP_DIR }}
+            cd ${{ secrets.REPO_DIR }}
             rm -rf myvenv
             if command -v python3.11 &> /dev/null; then
               python3.11 -m venv myvenv
