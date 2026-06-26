@@ -24,13 +24,7 @@ function checkFormState() {
   const isValid =
     titleValue !== "" && contentValue !== "" && categoryValue !== "";
 
-  if (isValid) {
-    submitButton.disabled = false;
-    submitButton.classList.add("active");
-  } else {
-    submitButton.disabled = true;
-    submitButton.classList.remove("active");
-  }
+  submitButton.classList.toggle("active", isValid);
 }
 
 // 카테고리 클릭
@@ -51,33 +45,31 @@ categoryItems.forEach((item) => {
 });
 
 // 제출 전 검사
-if (form) {
-  form.addEventListener("submit", (event) => {
-    const titleValue = titleInput.value.trim();
-    const contentValue = contentInput.value.trim();
-    const activeCategory = document.querySelector(".select-category li.active");
+form?.addEventListener("submit", (event) => {
+  const titleValue = titleInput.value.trim();
+  const contentValue = contentInput.value.trim();
+  const categoryValue = categorySelect.value;
 
-    if (titleValue === "") {
-      event.preventDefault();
-      alert("제목을 입력해주세요.");
-      titleInput.focus();
-      return;
-    }
+  if (titleValue === "") {
+    event.preventDefault();
+    alert("제목을 입력해주세요.");
+    titleInput.focus();
+    return;
+  }
 
-    if (contentValue === "") {
-      event.preventDefault();
-      alert("내용을 입력해주세요.");
-      contentInput.focus();
-      return;
-    }
+  if (contentValue === "") {
+    event.preventDefault();
+    alert("내용을 입력해주세요.");
+    contentInput.focus();
+    return;
+  }
 
-    if (!activeCategory) {
-      event.preventDefault();
-      alert("카테고리를 선택해주세요.");
-      return;
-    }
-  });
-}
+  if (categoryValue === "") {
+    event.preventDefault();
+    alert("카테고리를 선택해주세요.");
+    return;
+  }
+});
 
-titleInput.addEventListener("input", checkFormState);
-contentInput.addEventListener("input", checkFormState);
+titleInput?.addEventListener("input", checkFormState);
+contentInput?.addEventListener("input", checkFormState);

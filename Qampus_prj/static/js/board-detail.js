@@ -1,4 +1,3 @@
-
 //수정,삭제 모달
 const menuIcon = document.querySelector(".post-menu-icon");
 const modal = document.querySelector(".post-option-modal");
@@ -21,7 +20,6 @@ const postDeleteForm = document.querySelector("#post-delete-form");
 let modalTarget = "post";
 let deleteTarget = null;
 
-
 //수정/삭제 모달 띄우기
 const toggleModal = (event) => {
   event.stopPropagation();
@@ -42,25 +40,16 @@ const setCommentModalPosition = (targetButton) => {
   const modalHeight = 77;
   const gap = 8;
 
-  let modalTop = iconPosition.bottom + 6;
-  let modalLeft = iconPosition.right - modalWidth;
+  let modalTop = iconPosition.top;
+  let modalLeft = iconPosition.left - modalWidth - gap;
 
   const minLeft = appPosition.left + gap;
   const maxLeft = appPosition.right - modalWidth - gap;
   const minTop = appPosition.top + gap;
   const maxTop = appPosition.bottom - modalHeight - gap;
 
-  if (modalLeft < minLeft) {
-    modalLeft = minLeft;
-  } else {
-    modalLeft = maxLeft;
-  }
-
-  if (modalTop < minTop) {
-    modalTop = minTop;
-  } else {
-    modalTop = iconPosition.top - modalHeight - 6;
-  }
+  modalLeft = Math.max(minLeft, Math.min(modalLeft, maxLeft));
+  modalTop = Math.max(minTop, Math.min(modalTop, maxTop));
 
   commentModal.style.top = `${modalTop}px`;
   commentModal.style.left = `${modalLeft}px`;

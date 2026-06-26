@@ -70,7 +70,7 @@
 
           <!-- 카테고리 -->
           <div class="category-box">
-            {% for category in post.category.all %}
+            {% for category  in post.category.all %}
             <span class="category-item">{{ category.name }}</span>
             {% empty %}
             <span class="category-item">선택한 카테고리 없음</span>
@@ -411,6 +411,17 @@
               />
             </a>
 
+            <!-- 실제 게시글 삭제 form -->
+        <form
+          id="post-delete-form"
+          class="hidden"
+          method="POST"
+          action="{% url 'Qampus:delete' post.id %}"
+        >
+          {% csrf_token %}
+        </form>
+
+
             <button class="delete-button active" type="button">
               삭제하기
               <img
@@ -460,15 +471,7 @@
             </button>
           </div>
         </div>
-        <!-- 실제 게시글 삭제 form -->
-        <form
-          id="post-delete-form"
-          class="hidden"
-          method="POST"
-          action="{% url 'Qampus:delete' post.id %}"
-        >
-          {% csrf_token %}
-        </form>
+    
 
     
 {% endblock %}
