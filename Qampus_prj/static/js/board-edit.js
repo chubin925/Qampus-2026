@@ -53,3 +53,6 @@ if (form) {
     }
   });
 }
+
+titleInput.addEventListener("input", checkFormState);
+contentTextarea.addEventListener("input", checkFormState);

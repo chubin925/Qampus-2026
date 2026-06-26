@@ -6,7 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const howtolistPopup = document.querySelector(".howtolistPopup");
   const howtolistArrow = document.querySelector("#howtolist > img");
   const selectedLine = document.querySelector(".selected_line");
+  const postBtn = document.querySelector(".postBtn");
+  const app = document.querySelector(".app");
 
+  // 스크롤 시 질문올리기 버튼 위치 변경
+  if (postBtn && app) {
+    app.addEventListener("scroll", () => {
+      if (app.scrollTop > 60) {
+        postBtn.classList.add("is-floating");
+      } else {
+        postBtn.classList.remove("is-floating");
+      }
+    });
+  }
 
   // 팝업 버튼 (점세개)
   ellipsisBtn.addEventListener("click", (e) => {
@@ -46,14 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const selectedCategory =
-    document.querySelector(".selected_category");
+  const selectedCategory = document.querySelector(".selected_category");
 
   if (selectedCategory && selectedLine) {
-    selectedLine.style.width =
-      `${selectedCategory.offsetWidth}px`;
+    selectedLine.style.width = `${selectedCategory.offsetWidth}px`;
 
-    selectedLine.style.marginLeft =
-      `${selectedCategory.offsetLeft}px`;
+    selectedLine.style.marginLeft = `${selectedCategory.offsetLeft}px`;
   }
 });

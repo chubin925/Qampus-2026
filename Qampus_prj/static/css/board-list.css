@@ -6,42 +6,7 @@
 }
 
 .header {
-  justify-content: space-between;
-}
-
-.head-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.head-left-img {
-  width: 28px;
-  height: 28px;
-  margin-right: 14px;
-}
-
-.header h1 {
-  color: #000;
-  margin-left: 14px;
-}
-
-.head-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.head-right-img1,
-.head-right-img2 {
-  width: 24px;
-  height: 24px;
-}
-
-.head-right > button {
-  margin-left: 18px;
-  background-color: transparent;
-  border: none;
+  border-bottom: 1px solid var(--color-white);
 }
 
 .popupPostBtn {
@@ -51,25 +16,26 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 180px;
-  height: 37px;
-  padding: 10px 21px;
+  width: 170px;
+  height: 38px;
+  padding: 10px 15px;
 
   border-radius: 10px;
-  border: 1px solid #d9d9d9;
-  background-color: #f2f5fa;
+  border: 1px solid var(--border-default);
+  background-color: var(--modal-default-bg);
 
   position: absolute;
-
-  margin-left: 200px;
-  top: 45px;
+  top: 30px;
+  right: 10px;
   text-decoration: none;
 
-  z-index: 9999;
+  z-index: 100;
+
+  cursor: pointer;
 }
 
 .popupPostBtn > p {
-  color: #000;
+  color: var(--text-main);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -90,8 +56,8 @@
   padding-bottom: 10px;
   justify-content: space-evenly;
 
-  height: 53px;
-  border-bottom: 1px solid #d9d9d9;
+  height: 40px;
+  border-bottom: 1px solid var(--guide-line);
 }
 
 .navigation button {
@@ -101,7 +67,7 @@
 }
 
 .selected_category {
-  color: #000;
+  color: var(--text-main);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -109,7 +75,7 @@
 }
 
 .category {
-  color: #7b7b7b;
+  color: var(--text-disabled);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -117,14 +83,12 @@
 }
 
 .selected_line {
-  position: absolute;
-
   margin-left: 23px;
   top: 108px;
   width: 44px;
   height: 2px;
 
-  background-color: #2173f1;
+  background-color: var(--color-primary);
 }
 
 #howtolist {
@@ -142,12 +106,12 @@
   margin-top: 20px;
 
   border-radius: 20px;
-  border: 1px solid #d9d9d9;
-  background-color: #f2f5fa;
+  border: 1px solid var(--modal-border);
+  background-color: var(--modal-default-bg);
 }
 
 #howtolist > p {
-  color: #000;
+  color: var(--text-main);
   font-size: 12px;
 }
 
@@ -168,8 +132,8 @@
   height: 54px;
 
   border-radius: 10px;
-  border: 1px solid #d9d9d9;
-  background: #f2f5fa;
+  border: 1px solid var(--modal-border);
+  background: var(--modal-default-bg);
 
   margin-left: 20px;
   margin-top: 1px;
@@ -186,8 +150,8 @@
   border-radius: 0 0 10px 10px;
   height: 26px;
 
-  color: #000;
-  background-color: #f2f5fa;
+  color: var(--text-main);
+  background-color: var(--modal-default-bg);
   border: none;
 }
 
@@ -202,14 +166,14 @@
   border-radius: 10px 10px 0 0;
   height: 26px;
 
-  color: #000;
-  background-color: #f2f5fa;
+  color: var(--text-main);
+  background-color: var(--modal-default-bg);
   border: none;
 }
 
 .active {
-  background-color: #2173f1;
-  color: #ffffff;
+  background-color: var(--modal-active-bg);
+  color: var(--text-button-hover);
 }
 
 .none-post-notice {
@@ -223,7 +187,7 @@
 
   text-align: center;
 
-  color: #7b7b7b;
+  color: var(--text-primary);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -239,22 +203,21 @@
 
   width: 388px;
   min-height: 114px;
-  /* padding-bottom: 20px; */
   padding: 20px 20px 20px 20px;
+
+  border-bottom: 1px solid var(--guide-line);
 }
 
 .bigBoxForpost {
   display: block;
   width: 100%;
-  border-bottom: 1px solid #d9d9d9;
   text-decoration: none;
-  color: inherit;
 }
 
 .postTitle {
   margin: 0px;
 
-  color: #000;
+  color: var(--text-main);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -269,7 +232,7 @@
   margin-top: 12px;
   margin-bottom: 10px;
 
-  color: #000;
+  color: var(--text-main);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -281,7 +244,7 @@
 }
 
 .postInfo {
-  color: #7b7b7b;
+  color: var(--text-disabled);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -298,7 +261,7 @@
 
 .heart > div,
 .comment > div {
-  color: #7b7b7b;
+  color: var(--gray-600);
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -320,11 +283,13 @@
   align-items: center;
 
   gap: 16px;
+
+  font-variant-numeric: tabular-nums;
 }
 
 .numOfHeart,
 .numOfComment {
-  color: #7b7b7b;
+  color: var(--gray-600);
 
   font-size: 12px;
   font-style: normal;
@@ -333,7 +298,13 @@
 }
 
 .postBtn {
-  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  position: fixed;
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
@@ -343,15 +314,36 @@
   padding: 12px 40px;
 
   border-radius: 6px;
-  background-color: #2173f1;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  overflow: hidden;
 
-  text-decoration: none;
+  transition:
+    bottom 0.28s ease,
+    left 0.28s ease,
+    transform 0.28s ease,
+    width 0.28s ease,
+    height 0.28s ease,
+    padding 0.28s ease,
+    border-radius 0.28s ease;
+}
+
+.uploadQuestion {
+  white-space: nowrap;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  opacity: 1;
+  max-width: 100px;
+
+  transition:
+    opacity 0.12s ease 0.18s,
+    max-width 0.01s linear 0.18s;
 }
 
 .postBtn > img {
@@ -360,10 +352,37 @@
   gap: 8px;
 }
 
-.postBtn > p {
-  color: #fff;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+.postBtn.is-floating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 45px;
+  left: auto;
+  right: calc((100vw - 390px) / 2 + 20px);
+  transform: none;
+  gap: 0px;
+
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  padding: 0px;
+
+  z-index: 1000;
+}
+
+.postBtn.is-floating .uploadQuestion {
+  opacity: 0;
+  max-width: 0;
+
+  transition:
+    opacity 0.1s ease 0.1s,
+    max-width 0.01s linear 0.1s;
+}
+
+.postBtn.is-floating img {
+  width: 22px;
+  height: 22px;
 }

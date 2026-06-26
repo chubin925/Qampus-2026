@@ -81,7 +81,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: #ebebeb;
-  overflow: hidden;
 }
 
 /* 모바일 화면크기 - 아이폰 17 기준 */
@@ -90,19 +89,23 @@ body {
   height: 100dvh;
   margin: 0 auto;
   position: relative;
-  background: #fff;
+  background: var(--bg-main);
 
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: none;
 }
 
-@media (min-width: 430px) {
+@media (min-width: 390px) {
   .app {
     max-width: 390px;
     margin: 0 auto;
-    border-left: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
+    border-left: 1px solid var(--guide-line);
+    border-right: 1px solid var(--guide-line);
   }
 }
 
@@ -113,9 +116,8 @@ body {
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid var(--guide-line);
   gap: 10px;
-  position: relative;
 
   flex-shrink: 0;
 }
@@ -123,10 +125,23 @@ body {
 .header h1 {
   position: absolute;
   left: 52px;
+  gap: 10px;
+  color: var(--text-main);
 
   font-size: 18px;
   font-weight: 500;
   line-height: 1;
+}
+
+.head-left {
+  display: flex;
+  align-items: center;
+}
+
+.head-right {
+  display: flex;
+  right: 20px;
+  position: absolute;
 }
 
 .head-left-img {
@@ -142,13 +157,14 @@ body {
   height: 24px;
 }
 
+.head-right > button {
+  background-color: transparent;
+  border: none;
+}
 .head-left a {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 24px;
-  height: 24px;
 
   flex-shrink: 0;
   text-decoration: none;
@@ -161,4 +177,21 @@ body {
   height: 24px;
   display: block;
   object-fit: contain;
+}
+
+.top-area {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background-color: #fff;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

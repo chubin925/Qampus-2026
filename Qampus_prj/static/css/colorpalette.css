@@ -1,0 +1,45 @@
+:root {
+  --color-primary: #2173f1;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --gray-100: #f6f8ff;
+  --gray-300: #d9d9d9;
+  --gray-500: #a5a3a3;
+  --gray-600: #7b7b7b;
+  --gray-800: #444444;
+
+  /* Background */
+  --bg-main: var(--color-white);
+
+  /* modal */
+  --modal-default-bg: var(--gray-100);
+  --modal-active-bg: var(--color-primary);
+  --modal-border: var(--gray-300);
+
+  /* Text */
+  --text-main: var(--color-black);
+  --text-primary: var(--gray-600);
+  --text-placeholder: var(--gray-500);
+  --text-disabled: var(--gray-600);
+  --text-active: var(--color-primary);
+  --text-button-active: var(--gray-800);
+  --text-button-disabled: var(--gray-500);
+  --text-button-hover: var(--color-white);
+
+  /* button */
+  --btn-disabled-bg: var(--gray-500);
+  --btn-active-text: var(--gray-800);
+  --btn-disabled-text: var(--gray-500);
+  --btn-hover-text: var(--color-white);
+  --btn-default-bg: var(--color-primary);
+  --btn-hover-bg: var(--color-primary);
+
+  /* border */
+  --border-default: var(--gray-300);
+  --border-modal: var(--gray-300);
+
+  /* Guide / Divider */
+  --guide-line: var(--gray-300);
+}

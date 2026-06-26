@@ -2,6 +2,7 @@ from django.db import models
 import os
 from uuid import uuid4
 from django.utils import timezone
+from django.conf import settings
 
 def upload_filepath(instance, filename):
     today_str = timezone.now().strftime("%Y%m%d")
@@ -16,6 +17,15 @@ class Category(models.Model):
         return self.name
     
 class Post(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='posts',
+        null=True, 
+        blank=True,
+    )
+        
+    is_anonymous = models.BooleanField(default=False)
     title = models.CharField(max_length= 50)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add= True)
@@ -31,6 +41,8 @@ class Post(models.Model):
     
 class Comment(models.Model):
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='comments',null=True,blank=True,)
+    is_anonymous = models.BooleanField(default=False)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
     like_count = models.PositiveIntegerField(default=0)
@@ -40,6 +52,8 @@ class Comment(models.Model):
     
 class Reply(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="replies")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='replies',null=True,blank=True,)
+    is_anonymous = models.BooleanField(default=False)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
     like_count = models.PositiveIntegerField(default=0)
