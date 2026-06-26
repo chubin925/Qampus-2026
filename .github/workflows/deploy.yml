@@ -40,6 +40,7 @@ jobs:
             
             myvenv/bin/python -m pip install --upgrade pip setuptools wheel
             if [ -f requirements.txt ]; then myvenv/bin/pip install -r requirements.txt; fi
+            cd ${{ secrets.APP_DIR }}
             myvenv/bin/python manage.py migrate --noinput
 
             # 3) 서비스 재시작
