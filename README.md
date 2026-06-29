@@ -38,10 +38,10 @@ Qampus-2026/
 │   │   ├── urls.py
 │   │   └── templates/Qampus/    # base, main, detail, create, update 템플릿
 │   ├── accounts/                # 회원 인증 앱
-│   │   ├── models.py            # 커스텀 User (이메일 기반)
-│   │   ├── views.py             # 회원가입, 로그인, 로그아웃
+│   │   ├── models.py           
+│   │   ├── views.py             
 │   │   └── templates/accounts/  # login, signup 템플릿
-│   ├── Qampus_prj/              # Django 설정
+│   ├── Qampus_prj/            
 │   │   └── settings.py
 │   ├── static/
 │   │   ├── css/                 
